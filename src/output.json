@@ -1,0 +1,18 @@
+[
+    {
+        "id":1,
+        "output": "alquiler",
+        "amount": 200
+    
+    },{
+        "id":2,
+        "output": "gas",
+        "amount": 200
+        
+    },{
+        "id":3,
+        "output": "comida",
+        "amount": 200
+        
+    }
+    ]

@@ -1,0 +1,21 @@
+[
+{
+    "id":1,
+    "input": "sueldo",
+    "amount": 850,
+    "delete":false
+
+},{
+    "id":2,
+    "input": "bono",
+    "amount": 100,
+    "delete":false
+    
+},{
+    "id":3,
+    "input": "comisiones",
+    "amount": 56,
+    "delete":false
+    
+}
+]

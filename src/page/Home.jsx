@@ -9,7 +9,7 @@ import Title from "../components/title/Title"
 export default function Home(){
     return(
         <div>
-            <Header />
+    <Header />
     <Title />
     <DateTitle />
     <Plan />

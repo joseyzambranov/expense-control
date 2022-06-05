@@ -1,10 +1,15 @@
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
+import Title from "../components/title/Title"
+import Date from "../components/date/DateTilte"
 
 export default function Table (){
     return(
     <>
     <Header />
+
+<Title/>
+<Date/>
       <section className="section-table table">
             {/*--TABLE INPUT--*/}
             <div>

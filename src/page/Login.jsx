@@ -74,8 +74,6 @@ export default function Login(){
         login(dispatch,{email,password})
     }
     
-    console.log(isFetching)
-    console.log(error)
     return(<>
         <Header />
             <Title/>
@@ -83,7 +81,7 @@ export default function Login(){
                     <Form>
 
                         <div  className="modal-close "></div>
-
+t
                         <div className="modal-body">
                             
                             <span  className="spending-plan-item blue" >Email</span>

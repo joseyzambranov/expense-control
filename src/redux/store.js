@@ -9,11 +9,11 @@ import {
     PAUSE,
     PERSIST,
     PURGE,
-    TEGISTER,
     REGISTER,
 } from "redux-persist"
 
 import storage from "redux-persist/lib/storage";
+
 
 const persistConfig={
     key:"root",
@@ -22,9 +22,9 @@ const persistConfig={
 }
 
 const rootRouter = combineReducers({user:userRedux})
-const persistReducer=persistReducer(persistConfig,rootRouter)
+const persistedReducer  = persistReducer(persistConfig,rootRouter)
 export const store = configureStore({
-    reducer:persistReducer,
+    reducer:persistedReducer,
     middleware:(getDefaultMiddleware)=>
     getDefaultMiddleware({
         serializableCheck:{

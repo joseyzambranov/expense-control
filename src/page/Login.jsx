@@ -3,13 +3,16 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Title from "../components/title/Title"
 import {Link} from "react-router-dom"
+import { useState } from "react"
+import {useDispatch,useSelector} from "react-redux"
+import { login } from "../redux/apiCall"
 
 const Container = styled.div`
-    position: relative;
-    height:70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+position: relative;
+height:70vh;
+display: flex;
+align-items: center;
+justify-content: center;
 `  
 const Form = styled.div`
 
@@ -22,10 +25,10 @@ padding:1rem 0 1rem 0;
 `
 const ContainerButton = styled.div`
 
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 45px;
-    padding: 15px 0 15px 0;
+display: flex;
+justify-content: flex-end;
+margin-right: 45px;
+padding: 15px 0 15px 0;
 
 `
 const Button =styled.button`
@@ -34,65 +37,88 @@ background-color:var(--blue-color);
 width: 90%;
 height: 60px;
 border-radius: 25px;
+&:disabled{
+    background:green;
+    cursor:not-allowed;
+}
 
 `
+const MsjError =  styled.div`
+display:flex;
+justify-content: center;
+padding:.0  3rem 0 0;
+font-size:var(--smaller-font-size);
+
+`
+
 const NotUser =  styled.div`
 display:flex;
 justify-content: end;
 padding:.0  3rem 0 0;
 font-size:var(--smaller-font-size);
 
+`
 
+const Error = styled.span`
+color:var(--red-color)
 
 `
 export default function Login(){
 
-
+    const [email,setEmail]=useState("")
+    const [password,setUserPassword]=useState("")
+    const dispatch = useDispatch()
+   const {isFetching,error} = useSelector((state)=>state.user)
+    const handleClick=(e)=>{
+        e.preventDefault()
+        login(dispatch,{email,password})
+    }
+    
+    console.log(isFetching)
+    console.log(error)
     return(<>
         <Header />
-        <Title/>
-        <Container >
-            <Form>
+            <Title/>
+               <Container >
+                    <Form>
 
-<div  className="modal-close ">
-   
-</div>
+                        <div  className="modal-close "></div>
 
-<div className="modal-body">
-    
-    <span  className="spending-plan-item blue" >UserName</span>
-    
-    <div>
-        <input  className="spending-plan-item white" type="text"  />
-    </div>
-    <span  className="spending-plan-item blue" >Password</span>
-    
-    <div>
-        <input  className="spending-plan-item white" type="password"  />
-    </div>
-   
-   
+                        <div className="modal-body">
+                            
+                            <span  className="spending-plan-item blue" >Email</span>
+                            
+                            <div>
+                                <input  className="spending-plan-item white" type="text"  onChange={(e)=>setEmail(e.target.value)} />
+                            </div>
+                            <span  className="spending-plan-item blue" >Password</span>
+                            
+                            <div>
+                                <input  className="spending-plan-item white" type="password" onChange={(e)=>setUserPassword(e.target.value)}  />
+                            </div>
+                        
+                        </div>
 
-</div>
+                         <ContainerButton  >
 
+                            <Button onClick={handleClick} disabled={isFetching} >Login</Button>
+                           
 
-<ContainerButton>
-    <Button>Login</Button>
-</ContainerButton>
+                        </ContainerButton>
+                        
+                        <MsjError>
+                                {error && <Error>Somenthing went wrong...</Error>}
+                        </MsjError>
+                        <NotUser>
+                        
+                            <Link to="/Register">
+                                 <span>Not a User</span>
+                            </Link>
 
-<NotUser>
-    <Link to="/Register">
-    <span>Not a User</span>
-    </Link>
-
-</NotUser>
-
-
-            </Form>
-
-
-
-        </Container>
+                        </NotUser>
+                        
+                    </Form>
+                </Container>
         <Footer/>
         </>
 

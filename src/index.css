@@ -118,7 +118,8 @@ header{
     
 }
 .container-title-header{
-    margin-right: 10px;
+  /*  margin-right: 10px;*/
+    text-align: center;
 }
 .img-header{
     width: 90px;
@@ -129,16 +130,6 @@ header{
 .container-plan{
 display: flex;
 justify-content: center;
-}
-/*------------plan--------------*/
-
-.plan{
-    
-   
-  
-    
-   
-
 }
 /*---------------espending plan---------------------*/
 

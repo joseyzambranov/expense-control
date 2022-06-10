@@ -162,6 +162,7 @@ useEffect(()=>{
 })
 
 return(
+    <>
 <div className="container-plan">
 <section className="section plan">
     {/*SPENDING PLAN*/}
@@ -269,10 +270,10 @@ return(
 
     </div>
 </section>
-<ActualSpending>
 
-</ActualSpending>
+<ActualSpending/>
 
 </div>
+</>
 )
 }

@@ -6,16 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import {persistor, store} from "./redux/store"
 import { PersistGate } from 'redux-persist/integration/react';
+import { createRoot } from "react-dom/client";
+
+
+//------------old script--------------------------------------
 
 /*const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);*/
+  );*/
 
-
-ReactDOM.render(
+//------------------new react 18-----------------------------------
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+//ReactDOM.render(
+root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
 
@@ -24,7 +31,7 @@ ReactDOM.render(
     </PersistGate>
 
   </Provider>,
-  document.getElementById("root")
+  //document.getElementById("root")
 
 );
 

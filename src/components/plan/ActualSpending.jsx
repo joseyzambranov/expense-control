@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
-import {privateRequest /*, publicRequest*/ } from "../../requestMethods"
+import {privateRequest } from "../../requestMethods"
+import InputActul from "./InputActual"
+import OutputActual from "./OutputActual"
+import InputActualTotal from "./InputActualTotal"
+import OutputActualTotal from "./OutputActualTotal"
+
 
 export default function ActualSpending(){
 
     const user =useSelector((state)=>state.user)
     
+    const [input,setInput]=useState([])
+    const [output,setOutput]=useState([])
    
     const [inputBigButtom,setInputBigButtom]=useState(false)
     const [outputBigButtom,setOutputBigButtom]=useState(false)
@@ -29,17 +36,67 @@ export default function ActualSpending(){
 
     useEffect(()=>{
         
+        
         const getUserInput = async ()=>{
             
             try{
                 const res = await privateRequest.get("input/start/"+user.currentUser.others._id)
-                return res.data
+                setInput(res.data)
             }catch{}
         }
         getUserInput()
+
     },[user])
-   
-   
+    useEffect(()=>{
+
+        const getUserOutput = async ()=>{
+            
+            try{
+                const res = await privateRequest.get("output/start/"+user.currentUser.others._id)
+                setOutput(res.data)
+            }catch{}
+        }
+        getUserOutput()
+
+    },[user])
+
+
+    /*--------------------------total input----------------------------- */
+    
+    useEffect(()=>{
+        const getInput = async()=>{
+            try{
+                const res =await privateRequest.get("input/find/"+user.currentUser.others._id)
+                const sumInput = res.data.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
+                setInputTotal(sumInput)
+                
+            }catch{}
+        }
+        getInput()
+        
+        
+    },[user,])
+    
+    const [inputTotal,setInputTotal]=useState(0)
+
+        /*--------------------------total output----------------------------- */
+    
+        useEffect(()=>{
+            const getOutput = async()=>{
+                try{
+                    const res =await privateRequest.get("output/find/"+user.currentUser.others._id)
+                    const sumOutput = res.data.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
+                    setOutputTotal(sumOutput)
+                    
+                }catch{}
+            }
+            getOutput()
+            
+            
+        },[user,])
+        
+        const [outputTotal,setOutputTotal]=useState(0)
+
     return(
         <>
         <section className="section plan">
@@ -50,21 +107,9 @@ export default function ActualSpending(){
         </div>
 
         <div className="spending-plan-body-total">
-            <div className="spending-plan-item blue">
-                <p>Sueldo</p>
-            </div>
-            <div>
-                <input className="spending-plan-item white" type="number" />
-            </div>
-            <div className="spending-plan-item red">
-                <p>alquiler</p>
-            </div>
-            <div>
+          <InputActul input={input} />
+          <OutputActual output={output} />
 
-                <input className="spending-plan-item white" type="number" />
-
-
-            </div>
             <div>
 
             </div>
@@ -74,20 +119,11 @@ export default function ActualSpending(){
             </div>
             </Link>
 
+          
 
-
-            <div className="spending-plan-item-total item-a red">
-                <p>total gastos</p>
-                <div className="spending-plan-item-total-num white">
-                    <p className="text-black">200 $</p>
-                </div>
-            </div>
-            <div className="spending-plan-item-total blue ">
-                <p>total entradas</p>
-                <div className="spending-plan-item-total-num white ">
-                    <p className="text-black">200 $</p>
-                </div>
-            </div>
+            
+            <OutputActualTotal outputTotal={outputTotal}/>
+            <InputActualTotal inputTotal={inputTotal}/>
 
         </div>
         <div className="container-actual-button">
@@ -174,7 +210,8 @@ export default function ActualSpending(){
 
     </div>
 
-</section>
+        </section>
+
         </>
 
     )

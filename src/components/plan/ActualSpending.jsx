@@ -13,7 +13,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
 
     const dispatch =useDispatch()
     const user =useSelector((state)=>state.user)
-    //const inputActual = useSelector((state)=>state.inputActual.inputs)
+    const inputActual = useSelector((state)=>state.inputActual.inputs)
    // const inputTotal = useSelector((state)=>state.inputTotal.total)
 
             /*-----------------GET TWO FIRST INPUT -----------------------*/
@@ -88,24 +88,24 @@ export default function ActualSpending({inputTotal,outputTotal}){
             e.preventDefault()
             
         
-       /* try{*/
+       try{
             const inpu =  {...addInput,userId:user.currentUser.others._id}
             addInputActual(dispatch,inpu)
-            //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            //getInputActual(dispatch,user.currentUser.others._id)
-            //dispatch(addInputTotal(inpu))
+            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+           // getInputActual(dispatch,user.currentUser.others._id)
+            dispatch(addInputTotal(inpu))
             //addInputTotal(dispatch)
             
-       /* }catch{}*/
+      }catch{}
             
-             //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-             //dispatch(addInputTotal(inputActual))
+             getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+             dispatch(addInputTotal(inputActual))
              //addInputTotal(dispatch)
              setInputBigButtom(false) 
 
     }
 
-    console.log(inputTotal)
+    //console.log(inputTotal)
     
     return(
         <>

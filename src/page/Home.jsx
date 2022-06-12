@@ -24,14 +24,14 @@ export default function Home(){
             
         try{
 
-            getInputActual(dispatch,user.currentUser.others._id)
+           // getInputActual(dispatch,user.currentUser.others._id)
             dispatch(addInputTotal(inputActual))
-            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
             //addInputTotal(dispatch)
     
         }catch{}
             
-    },[dispatch,user,inputActual])    
+    },[dispatch,inputActual])    
 
     /*useEffect(()=>{
         try{

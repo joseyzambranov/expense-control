@@ -33,11 +33,11 @@ export default function Header(){
                
                
            </div>
-           <LoginLogout onClick={handleClick} >
+           <LoginLogout onClick={handleClick}  >
            
             {user?<><i class='bx bx-log-out-circle'></i></>:<><Link className="text-white" to="/Login">
            <i class='bx bx-log-in-circle'></i>
-        </Link></>
+            </Link></>
           }
            
            </LoginLogout>

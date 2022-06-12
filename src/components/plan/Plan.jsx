@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react"
-
+import { useEffect, useState } from "react"
 import data from "../../data.json"
 import InputList from "./InputList"
 import dataoutput from "../../output.json";
@@ -7,7 +6,7 @@ import "../../index.css"
 import OutputList from "./OutputList";
 import ActualSpending from "./ActualSpending";
 
-export default function Plan(){
+export default function Plan({inputTotal,outputTotal}){
 
 const [input,setInput]= useState(data);
 const [output,setOutput]= useState(dataoutput);
@@ -23,7 +22,7 @@ const sumInput=()=>{
 
 /*------------------Input total----------------------- */
 
-const [inputTotal,setInputTotal] = useState(sumInput())
+const [inputTotalPlan,setInputTotal] = useState(sumInput())
 
 const onChange=(e)=>{
     const inputDelete = input.map(i=>{
@@ -185,7 +184,7 @@ return(
             <div className="spending-plan-item-total blue">
                 <p>total entradas</p>
                 <div className="spending-plan-item-total-num white ">
-                    <p className="text-black">{inputTotal} $</p>
+                    <p className="text-black">{inputTotalPlan} $</p>
                 </div>
             </div>
 
@@ -209,10 +208,17 @@ return(
 
                     <div className="modal-body">
                         
-                        <input onChange={handleChangeImput} className="spending-plan-item blue" value={userInput} placeholder="New Input"  type="text" />
+                        <input onChange={handleChangeImput} 
+                               className="spending-plan-item blue" 
+                               value={userInput} placeholder="New Input"  
+                               type="text" />
                         
                         <div>
-                            <input onChange={handleChangeAmount} value={userAmount} className="spending-plan-item white" type="number" placeholder={userAmount} />
+                            <input onChange={handleChangeAmount} 
+                                   value={userAmount} 
+                                   className="spending-plan-item white" 
+                                   type="number" 
+                                   placeholder={userAmount} />
                         </div>
                        
                        
@@ -271,7 +277,7 @@ return(
     </div>
 </section>
 
-<ActualSpending/>
+<ActualSpending outputTotal={outputTotal}  inputTotal={inputTotal} />
 
 </div>
 </>

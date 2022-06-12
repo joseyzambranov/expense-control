@@ -1,22 +1,44 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { Link, useLocation } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import {privateRequest } from "../../requestMethods"
 import InputActul from "./InputActual"
 import OutputActual from "./OutputActual"
 import InputActualTotal from "./InputActualTotal"
 import OutputActualTotal from "./OutputActualTotal"
+import { addInputActual, getInputActual, getTwoFirstInputActual } from "../../redux/apiCall"
+import { addInputTotal } from "../../redux/inputTotalRedux"
 
+export default function ActualSpending({inputTotal,outputTotal}){
 
-export default function ActualSpending(){
-
+    const dispatch =useDispatch()
     const user =useSelector((state)=>state.user)
+    //const inputActual = useSelector((state)=>state.inputActual.inputs)
+   // const inputTotal = useSelector((state)=>state.inputTotal.total)
+
+            /*-----------------GET TWO FIRST INPUT -----------------------*/
+
+    const twoFirstInput= useSelector((state)=>state.inputActual.twoFirstInputs)
+        
+   /* useEffect(()=>{
+            
+        try{
+
+            getInputActual(dispatch,user.currentUser.others._id)
+            dispatch(addInputTotal(inputActual))
+            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            //addInputTotal(dispatch)
     
-    const [input,setInput]=useState([])
-    const [output,setOutput]=useState([])
-   
+        }catch{}
+            
+    },[dispatch,user,inputActual])    */
+
+    /*----------------------------ACTIVE AND DESACTIVE MODAL--------------------------------- */
+    
     const [inputBigButtom,setInputBigButtom]=useState(false)
     const [outputBigButtom,setOutputBigButtom]=useState(false)
+
+    const [addInput,setAddInput]=useState({})
 
     const closeModalOutputBig=()=>{
         setOutputBigButtom(false)
@@ -34,69 +56,57 @@ export default function ActualSpending(){
         setInputBigButtom(false)
     }
 
+ /*-----------------GET TWO FIRST OUTPUT -----------------------*/
+    const [output,setOutput]=useState([])
+    
     useEffect(()=>{
-        
-        
-        const getUserInput = async ()=>{
+
+    const getUserOutput = async ()=>{
             
-            try{
-                const res = await privateRequest.get("input/start/"+user.currentUser.others._id)
-                setInput(res.data)
-            }catch{}
-        }
-        getUserInput()
-
-    },[user])
-    useEffect(()=>{
-
-        const getUserOutput = async ()=>{
             
             try{
                 const res = await privateRequest.get("output/start/"+user.currentUser.others._id)
                 setOutput(res.data)
+                    
             }catch{}
+            
         }
-        getUserOutput()
+    getUserOutput()
 
     },[user])
 
+        /*------------------------ADD INPUT ACTUAL---------------------------- */
 
-    /*--------------------------total input----------------------------- */
+        const handleChange=(e)=>{
+            e.preventDefault()
+            setAddInput(prev=>{
+                return{...prev,[e.target.name]:e.target.value}
+            })
     
-    useEffect(()=>{
-        const getInput = async()=>{
-            try{
-                const res =await privateRequest.get("input/find/"+user.currentUser.others._id)
-                const sumInput = res.data.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
-                setInputTotal(sumInput)
-                
-            }catch{}
         }
-        getInput()
-        
-        
-    },[user,])
-    
-    const [inputTotal,setInputTotal]=useState(0)
-
-        /*--------------------------total output----------------------------- */
-    
-        useEffect(()=>{
-            const getOutput = async()=>{
-                try{
-                    const res =await privateRequest.get("output/find/"+user.currentUser.others._id)
-                    const sumOutput = res.data.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
-                    setOutputTotal(sumOutput)
-                    
-                }catch{}
-            }
-            getOutput()
+        const handleClick=(e)=>{
+            e.preventDefault()
             
-            
-        },[user,])
         
-        const [outputTotal,setOutputTotal]=useState(0)
+       /* try{*/
+            const inpu =  {...addInput,userId:user.currentUser.others._id}
+            addInputActual(dispatch,inpu)
+            //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            //getInputActual(dispatch,user.currentUser.others._id)
+            //dispatch(addInputTotal(inpu))
+            //addInputTotal(dispatch)
+            
+       /* }catch{}*/
+            
+             //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+             //dispatch(addInputTotal(inputActual))
+             //addInputTotal(dispatch)
+             setInputBigButtom(false) 
 
+    }
+
+    console.log(inputTotal)
+    
     return(
         <>
         <section className="section plan">
@@ -107,10 +117,10 @@ export default function ActualSpending(){
         </div>
 
         <div className="spending-plan-body-total">
-          <InputActul input={input} />
-          <OutputActual output={output} />
+          {<InputActul input={twoFirstInput} />}
 
-            <div>
+          <OutputActual output={output} />
+        <div>
 
             </div>
             <Link to="/table">
@@ -131,22 +141,30 @@ export default function ActualSpending(){
                 <button onClick={openModalInputBig} className="actual-spending-button blue text-white button_modal">input <i className='bx bx-plus'></i></button>
                 <div className={`modal ${inputBigButtom?"modal-active":""}`}>
                     {/*--MODAL--*/}
-                    <div className="spending-plan">
+                    <form className="spending-plan" onSubmit={handleClick}>
         
                         <div onClick={closeModalInputBig} className="modal-close close_modal" >
                             <i className='bx bx-x text-white'></i>
                         </div>
         
                         <div className="modal-body">
-                            <div className="spending-plan-item blue">
-                                <p >new input</p>
-                            </div>
+                            <input className="spending-plan-item blue" 
+                                   onChange={handleChange}
+                                   name="input"
+                                   placeholder="New Input"
+                                   type="text"
+                            />
+                            
                             <div >
-                                <input className="spending-plan-item white" type="number" />
+                            <input type="number"
+                                   name="price"
+                                   className="spending-plan-item white"
+                                   onChange={handleChange}
+                                    />
                             </div>
         
                         </div>
-                        <div>
+                        {/*<div>
                             <p className="text-black section-title-center">or</p>
                         </div>
                         <div className="modal-body">   
@@ -157,12 +175,12 @@ export default function ActualSpending(){
                             <div >
                                 <input className="spending-plan-item white" type="number" />
                             </div>
-                        </div>
+                        </div>*/}
                             <div className="modal-button-container">
                                 <button className="actual-spending-button blue text-white ">input <i className='bx bx-plus'></i></button>
                             </div>
         
-                    </div>
+                    </form>
         
         
                 </div>

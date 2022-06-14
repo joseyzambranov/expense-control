@@ -8,6 +8,7 @@ import Plan from "../components/plan/Plan"
 import Title from "../components/title/Title"
 import { getInputActual, getOutputActual, getTwoFirstInputActual } from "../redux/apiCall"
 import { addInputTotal } from "../redux/inputTotalRedux"
+import { userNologin } from "../redux/userRedux"
 
 export default function Home(){
 
@@ -15,7 +16,7 @@ export default function Home(){
     const dispatch = useDispatch()
     const inputActual = useSelector((state)=>state.inputActual.inputs)
     const outputActual = useSelector((state)=>state.outputActual.outputs)
-    const inputTotal = useSelector((state)=>state.inputTotal.total)
+    const inputTotal = useSelector((state)=>state.inputActual.total)
 
     
     /*--------------------------total input----------------------------- */
@@ -24,14 +25,14 @@ export default function Home(){
             
         try{
 
-           // getInputActual(dispatch,user.currentUser.others._id)
-            dispatch(addInputTotal(inputActual))
-            //getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            getInputActual(dispatch,user.currentUser.others._id)
+            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
             //addInputTotal(dispatch)
     
         }catch{}
+        //dispatch(addInputTotal(inputActual))
             
-    },[dispatch,inputActual])    
+    },[dispatch])  
 
     /*useEffect(()=>{
         try{
@@ -51,8 +52,8 @@ export default function Home(){
         useEffect(()=>{
         try{
             getOutputActual(dispatch,user.currentUser.others._id)
-           const sumOutput = outputActual.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
-           setOutputTotal(sumOutput)
+            const sumOutput = outputActual.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
+            setOutputTotal(sumOutput)
 
         }catch{}
             

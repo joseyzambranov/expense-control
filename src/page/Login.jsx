@@ -2,10 +2,13 @@ import styled from "styled-components"
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Title from "../components/title/Title"
-import {Link} from "react-router-dom"
-import { useState } from "react"
+import {Link, Navigate, unstable_HistoryRouter} from "react-router-dom"
+import { useEffect, useState } from "react"
 import {useDispatch,useSelector} from "react-redux"
-import { login } from "../redux/apiCall"
+import { getInputActual, getTwoFirstInputActual, login } from "../redux/apiCall"
+import { addInputTotal } from "../redux/inputTotalRedux"
+
+
 
 const Container = styled.div`
 position: relative;
@@ -60,18 +63,46 @@ font-size:var(--smaller-font-size);
 `
 
 const Error = styled.span`
-color:var(--red-color)
-
+color:var(--red-color);
 `
+
 export default function Login(){
+
+    const user = useSelector((state)=>state.user)
+    const inputActual =useSelector((state)=>state.inputActual.inputs) 
+
+   /*useEffect(()=>{
+            
+            try{
+    
+                getInputActual(dispatch,user.currentUser.others._id)
+                dispatch(addInputTotal(inputActual))
+                getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+               
+        
+            }catch{}
+                
+        },[dispatch,inputActual,user])*/
 
     const [email,setEmail]=useState("")
     const [password,setUserPassword]=useState("")
     const dispatch = useDispatch()
-   const {isFetching,error} = useSelector((state)=>state.user)
+    const {isFetching,error} = useSelector((state)=>state.user)
+
     const handleClick=(e)=>{
+
         e.preventDefault()
-        login(dispatch,{email,password})
+        
+        try{
+            login(dispatch,{email,password})
+            
+        }catch{}
+
+        window.location.reload()
+        
+       
+        
+            
     }
     
     return(<>

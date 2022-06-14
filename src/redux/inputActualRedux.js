@@ -5,6 +5,7 @@ export const inputActualSlice = createSlice({
     initialState:{
     inputs:[],
     twoFirstInputs:[],
+    total:0,
     isFetching:false,
     error:false
     },
@@ -17,6 +18,7 @@ export const inputActualSlice = createSlice({
         getInputActualSuccess:(state,action)=>{
             state.isFetching=false;
             state.inputs=action.payload;
+            state.total = action.payload.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
         },
         getInputActualFailure:(state)=>{
             state.isFetching=false;
@@ -43,12 +45,19 @@ export const inputActualSlice = createSlice({
         addInputActualSuccess:(state,action)=>{
             state.isFetching=false;
             state.inputs.push(action.payload);
+            state.total = action.payload.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
 
         },
         addInputActualFailure:(state)=>{
             state.isFetching=false;
             state.error=true
 
+        },
+         //LOGOUT
+         inputLogout:(state)=>{
+            state.inputs=[];
+            state.twoFirstInputs=[]
+            state.total=0;
         }
 
     }
@@ -63,6 +72,7 @@ export const{
              addInputActualFailure,
              getTwoFirstInputActualStart,
              getTwoFirstInputActualSuccess,
-             getTwoFirstInputActualFailure
+             getTwoFirstInputActualFailure,
+             inputLogout
                                     }=inputActualSlice.actions;
 export default inputActualSlice.reducer 

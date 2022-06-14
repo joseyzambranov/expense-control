@@ -11,7 +11,8 @@ import { addInputActualFailure,
          getInputActualSuccess,
          getTwoFirstInputActualStart,
          getTwoFirstInputActualSuccess,
-         getTwoFirstInputActualFailure, } from "./inputActualRedux"
+         getTwoFirstInputActualFailure,
+         inputLogout, } from "./inputActualRedux"
 import { getOutputActualFailure,
          getOutputActualStart, 
          getOutputActualSuccess } from "./outputActualRedux"
@@ -78,6 +79,12 @@ export const addInputActual = async(dispatch,input)=>{
     }catch(err){
         dispatch(addInputActualFailure())
     }
+}
+
+//LOGOUT INPUT
+
+export const logoutInputActual = (dispatch)=>{
+    dispatch(inputLogout())
 }
 
 /*-----------------------------------OUTPUT--------------------------------------- */

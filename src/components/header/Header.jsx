@@ -2,7 +2,9 @@ import "../../index.css"
 import {Link} from "react-router-dom"
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
-import { logoutuser } from "../../redux/apiCall"
+import { logoutInputActual, logoutuser } from "../../redux/apiCall"
+import { loguotInputTotal } from "../../redux/inputTotalRedux"
+
 
 export default function Header(){
 
@@ -10,17 +12,17 @@ export default function Header(){
     color: white;
     padding: 0 1rem 0 1rem;
     font-size: var(--big-font-size);
-    &:disabled{
-        transform: rotate(-180deg);
-    }
 
     `
     const dispatch =useDispatch()
     const user = useSelector((state)=>state.user.currentUser)
+    //const inputActual =useSelector((state)=>state.inputActual.inputs)
 
     const handleClick =(e)=>{
         e.preventDefault()
         logoutuser(dispatch)
+        logoutInputActual(dispatch)
+        //loguotInputTotal(dispatch)
     }
 
     return(

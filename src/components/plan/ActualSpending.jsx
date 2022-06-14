@@ -92,12 +92,13 @@ export default function ActualSpending({inputTotal,outputTotal}){
             const inpu =  {...addInput,userId:user.currentUser.others._id}
             addInputActual(dispatch,inpu)
             getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-           // getInputActual(dispatch,user.currentUser.others._id)
-            dispatch(addInputTotal(inpu))
+            getInputActual(dispatch,user.currentUser.others._id)
+            setInputBigButtom(false) 
+           /// dispatch(addInputTotal(inputActual))
             //addInputTotal(dispatch)
             
       }catch{}
-            
+            getInputActual(dispatch,user.currentUser.others._id)
              getTwoFirstInputActual(dispatch,user.currentUser.others._id)
              dispatch(addInputTotal(inputActual))
              //addInputTotal(dispatch)

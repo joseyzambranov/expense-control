@@ -6,32 +6,18 @@ import InputActul from "./InputActual"
 import OutputActual from "./OutputActual"
 import InputActualTotal from "./InputActualTotal"
 import OutputActualTotal from "./OutputActualTotal"
-import { addInputActual, getInputActual, getTwoFirstInputActual } from "../../redux/apiCall"
-import { addInputTotal } from "../../redux/inputTotalRedux"
+import { addInputActual, addOutputActual, getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../../redux/apiCall"
 
 export default function ActualSpending({inputTotal,outputTotal}){
 
     const dispatch =useDispatch()
     const user =useSelector((state)=>state.user)
-    const inputActual = useSelector((state)=>state.inputActual.inputs)
-   // const inputTotal = useSelector((state)=>state.inputTotal.total)
-
-            /*-----------------GET TWO FIRST INPUT -----------------------*/
+  
+    /*-----------------GET TWO FIRST -----------------------*/
 
     const twoFirstInput= useSelector((state)=>state.inputActual.twoFirstInputs)
-        
-   /* useEffect(()=>{
-            
-        try{
 
-            getInputActual(dispatch,user.currentUser.others._id)
-            dispatch(addInputTotal(inputActual))
-            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            //addInputTotal(dispatch)
-    
-        }catch{}
-            
-    },[dispatch,user,inputActual])    */
+    const twoFirstOutput=useSelector((state)=>state.outputActual.twoFirstOutputs)
 
     /*----------------------------ACTIVE AND DESACTIVE MODAL--------------------------------- */
     
@@ -39,6 +25,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
     const [outputBigButtom,setOutputBigButtom]=useState(false)
 
     const [addInput,setAddInput]=useState({})
+    const [addOutput,setAddOutput]=useState({})
 
     const closeModalOutputBig=()=>{
         setOutputBigButtom(false)
@@ -56,26 +43,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
         setInputBigButtom(false)
     }
 
- /*-----------------GET TWO FIRST OUTPUT -----------------------*/
-    const [output,setOutput]=useState([])
-    
-    useEffect(()=>{
-
-    const getUserOutput = async ()=>{
-            
-            
-            try{
-                const res = await privateRequest.get("output/start/"+user.currentUser.others._id)
-                setOutput(res.data)
-                    
-            }catch{}
-            
-        }
-    getUserOutput()
-
-    },[user])
-
-        /*------------------------ADD INPUT ACTUAL---------------------------- */
+/*------------------------ADD INPUT ACTUAL---------------------------- */
 
         const handleChange=(e)=>{
             e.preventDefault()
@@ -87,26 +55,42 @@ export default function ActualSpending({inputTotal,outputTotal}){
         const handleClick=(e)=>{
             e.preventDefault()
             
-        
        try{
             const inpu =  {...addInput,userId:user.currentUser.others._id}
             addInputActual(dispatch,inpu)
             getTwoFirstInputActual(dispatch,user.currentUser.others._id)
             getInputActual(dispatch,user.currentUser.others._id)
             setInputBigButtom(false) 
-           /// dispatch(addInputTotal(inputActual))
-            //addInputTotal(dispatch)
             
       }catch{}
             getInputActual(dispatch,user.currentUser.others._id)
-             getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-             dispatch(addInputTotal(inputActual))
-             //addInputTotal(dispatch)
-             setInputBigButtom(false) 
+            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            setInputBigButtom(false) 
 
     }
+/*----------------------ADD OUTPUT ACTUAL-------------------------*/   
 
-    //console.log(inputTotal)
+    const handleChangeOutput=(e)=>{
+        e.preventDefault()
+        setAddOutput(prev=>{
+            return{...prev,[e.target.name]:e.target.value}
+        })
+    }
+
+const handleClickOutput=(e)=>{
+    e.preventDefault()
+    try{
+        const outpu = {...addOutput,userId:user.currentUser.others._id}
+        addOutputActual(dispatch,outpu)
+        getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+        getOutputActual(dispatch,user.currentUser.others._id)
+        setOutputBigButtom(false)
+
+    }catch{}
+    getOutputActual(dispatch,user.currentUser.others._id)
+    getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+    setOutputBigButtom(false)
+}
     
     return(
         <>
@@ -120,7 +104,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
         <div className="spending-plan-body-total">
           {<InputActul input={twoFirstInput} />}
 
-          <OutputActual output={output} />
+          {<OutputActual output={twoFirstOutput} />}
         <div>
 
             </div>
@@ -130,16 +114,18 @@ export default function ActualSpending({inputTotal,outputTotal}){
             </div>
             </Link>
 
-          
-
-            
             <OutputActualTotal outputTotal={outputTotal}/>
             <InputActualTotal inputTotal={inputTotal}/>
 
         </div>
         <div className="container-actual-button">
             
-                <button onClick={openModalInputBig} className="actual-spending-button blue text-white button_modal">input <i className='bx bx-plus'></i></button>
+                <button onClick={openModalInputBig} className="actual-spending-button blue text-white button_modal">
+                    
+                    input 
+                    
+                    <i className='bx bx-plus'></i></button>
+
                 <div className={`modal ${inputBigButtom?"modal-active":""}`}>
                     {/*--MODAL--*/}
                     <form className="spending-plan" onSubmit={handleClick}>
@@ -189,22 +175,29 @@ export default function ActualSpending({inputTotal,outputTotal}){
                 <button onClick={openModalOutputBig} className="actual-spending-button red text-white button_modal">output <i className='bx bx-minus'></i></button>
                 <div className={`modal ${outputBigButtom?"modal-active":""}`}>
                     {/*--MODAL--*/}
-                    <div className="spending-plan">
+                    <form className="spending-plan" onSubmit={handleClickOutput}>
         
                         <div onClick={closeModalOutputBig} className="modal-close close_modal" >
                             <i className='bx bx-x text-white'></i>
                         </div>
         
                         <div className="modal-body">
-                            <div className="spending-plan-item red">
-                                <p >new output</p>
-                            </div>
+                        <input className="spending-plan-item red" 
+                                   onChange={handleChangeOutput}
+                                   name="output"
+                                   placeholder="New Output"
+                                   type="text"
+                            />
                             <div >
-                                <input className="spending-plan-item white" type="number" />
+                                <input className="spending-plan-item white" 
+                                       type="number"
+                                       onChange={handleChangeOutput}
+                                       name="price"
+                                        />
                             </div>
         
                         </div>
-                        <div>
+                        {/*<div>
                             <p className="text-black section-title-center">or</p>
                         </div>
                         <div className="modal-body">   
@@ -215,12 +208,12 @@ export default function ActualSpending({inputTotal,outputTotal}){
                             <div >
                                 <input className="spending-plan-item white" type="number" />
                             </div>
-                        </div>
+                        </div>*/}
                             <div className="modal-button-container">
                                 <button className="actual-spending-button red text-white ">output <i className='bx bx-minus'></i></button>
                             </div>
         
-                    </div>
+                    </form>
         
         
                 </div>

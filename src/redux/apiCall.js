@@ -13,9 +13,19 @@ import { addInputActualFailure,
          getTwoFirstInputActualSuccess,
          getTwoFirstInputActualFailure,
          inputLogout, } from "./inputActualRedux"
-import { getOutputActualFailure,
+import {
+         getOutputActualFailure,
          getOutputActualStart, 
-         getOutputActualSuccess } from "./outputActualRedux"
+         getOutputActualSuccess,
+         getTwoFirstOutputActualStart,
+         getTwoFirstOutputActualSuccess,
+         getTwoFirstOutputActualFailure, 
+         addOutputActualStart,
+         addOutputActualSuccess,
+         addOutputActualFailure,
+         outputLogout
+        
+        } from "./outputActualRedux"
 
 /*------------------------------USER------------------------------------*/
 
@@ -100,4 +110,37 @@ export const getOutputActual = async(dispatch , id)=>{
        dispatch(getOutputActualFailure())
     }   
    }
+
+   //GET TWO FIRST OUTPUT ACTUAL
+
+export const getTwoFirstOutputActuaL = async(dispatch , id)=>{
+    dispatch(getTwoFirstOutputActualStart())
+    try{
+       const res= await privateRequest.get(`output/start/${id}`)
+       dispatch(getTwoFirstOutputActualSuccess(res.data))
+    }catch(err){
+       dispatch(getTwoFirstOutputActualFailure())
+    }   
+   }
+
+   //ADD OUTPUT
+
+export const addOutputActual = async(dispatch,input)=>{
+    dispatch(addOutputActualStart())
+    try{
+
+        const res = await privateRequest.post(`output/`,input)
+        dispatch(addOutputActualSuccess(res.data))
+
+
+    }catch(err){
+        dispatch(addOutputActualFailure())
+    }
+}
+//LOGOUT OUTPUT
+
+export const logoutOutputActual = (dispatch)=>{
+    dispatch(outputLogout())
+}
+
 

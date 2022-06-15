@@ -2,7 +2,7 @@ import "../../index.css"
 import {Link} from "react-router-dom"
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
-import { logoutInputActual, logoutuser } from "../../redux/apiCall"
+import { logoutInputActual, logoutOutputActual, logoutuser } from "../../redux/apiCall"
 import { loguotInputTotal } from "../../redux/inputTotalRedux"
 
 
@@ -22,7 +22,7 @@ export default function Header(){
         e.preventDefault()
         logoutuser(dispatch)
         logoutInputActual(dispatch)
-        //loguotInputTotal(dispatch)
+        logoutOutputActual(dispatch)
     }
 
     return(

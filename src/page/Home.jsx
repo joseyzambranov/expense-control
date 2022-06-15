@@ -6,20 +6,17 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Plan from "../components/plan/Plan"
 import Title from "../components/title/Title"
-import { getInputActual, getOutputActual, getTwoFirstInputActual } from "../redux/apiCall"
-import { addInputTotal } from "../redux/inputTotalRedux"
-import { userNologin } from "../redux/userRedux"
+import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
 
 export default function Home(){
 
     const user =useSelector((state)=>state.user)
     const dispatch = useDispatch()
-    const inputActual = useSelector((state)=>state.inputActual.inputs)
-    const outputActual = useSelector((state)=>state.outputActual.outputs)
+   
+    const outputTotal = useSelector((state)=>state.outputActual.total)
     const inputTotal = useSelector((state)=>state.inputActual.total)
 
-    
-    /*--------------------------total input----------------------------- */
+    /*-------------------------- GET TWO FIRST ,  GET TOTAL----------------------------- */
 
     useEffect(()=>{
             
@@ -27,39 +24,16 @@ export default function Home(){
 
             getInputActual(dispatch,user.currentUser.others._id)
             getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            //addInputTotal(dispatch)
+            getOutputActual(dispatch,user.currentUser.others._id)
+            getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+
     
         }catch{}
-        //dispatch(addInputTotal(inputActual))
-            
-    },[dispatch])  
 
-    /*useEffect(()=>{
-        try{
-            getInputActual(dispatch,user.currentUser.others._id)
-           const sumInput = inputActual.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
-           setInputTotal(sumInput)
-
-        }catch{}
             
-        },[dispatch])
-    
-    
-    const [inputTotal,setInputTotal]=useState(0)*/
+    },[dispatch,user])  
 
         /*--------------------------total output----------------------------- */
-    
-        useEffect(()=>{
-        try{
-            getOutputActual(dispatch,user.currentUser.others._id)
-            const sumOutput = outputActual.map(item => item.price).reduce((prev, curr) => prev + curr, 0)
-            setOutputTotal(sumOutput)
-
-        }catch{}
-            
-        },[dispatch])
-    
-    const [outputTotal,setOutputTotal]=useState(0)
 
 
     return(

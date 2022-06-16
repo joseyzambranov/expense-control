@@ -13,8 +13,7 @@ import { addInputActualFailure,
          getTwoFirstInputActualSuccess,
          getTwoFirstInputActualFailure,
          inputLogout, } from "./inputActualRedux"
-import {
-         getOutputActualFailure,
+import { getOutputActualFailure,
          getOutputActualStart, 
          getOutputActualSuccess,
          getTwoFirstOutputActualStart,
@@ -24,8 +23,8 @@ import {
          addOutputActualSuccess,
          addOutputActualFailure,
          outputLogout
-        
-        } from "./outputActualRedux"
+       } from "./outputActualRedux"
+import { addInputPlanPush, addOutputPlanPush } from "./expensePlanRedux"
 
 /*------------------------------USER------------------------------------*/
 
@@ -113,7 +112,7 @@ export const getOutputActual = async(dispatch , id)=>{
 
    //GET TWO FIRST OUTPUT ACTUAL
 
-export const getTwoFirstOutputActuaL = async(dispatch , id)=>{
+   export const getTwoFirstOutputActuaL = async(dispatch , id)=>{
     dispatch(getTwoFirstOutputActualStart())
     try{
        const res= await privateRequest.get(`output/start/${id}`)
@@ -142,5 +141,14 @@ export const addOutputActual = async(dispatch,input)=>{
 export const logoutOutputActual = (dispatch)=>{
     dispatch(outputLogout())
 }
+/*-----------------------------EXPENSE PLAN--------------------------------------*/
+//ADD INPUT PLAN
 
+export const addInputplan =(dispatch,input)=>{
+    dispatch(addInputPlanPush(input))
+}
+//ADD OUTPUT PLAN
 
+export const addOutputplan =(dispatch,output)=>{
+    dispatch(addOutputPlanPush(output))
+}

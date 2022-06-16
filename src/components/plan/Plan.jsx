@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react"
-import data from "../../data.json"
+//import data from "../../data.json"
 import InputList from "./InputList"
-import dataoutput from "../../output.json";
+//import dataoutput from "../../output.json";
 import "../../index.css"
 import OutputList from "./OutputList";
 import ActualSpending from "./ActualSpending";
+import { useDispatch, useSelector } from "react-redux";
+import { addInputplan, addOutputplan } from "../../redux/apiCall";
 
 export default function Plan({inputTotal,outputTotal}){
 
-const [input,setInput]= useState(data);
-const [output,setOutput]= useState(dataoutput);
+    const dispatch =useDispatch()
+
+    const inputPlan = useSelector((state)=>state.expensePlan.inputsPlan)
+    const outputPlan =useSelector((state)=>state.expensePlan.outputPlan)
+
+const [input,setInput]= useState(inputPlan);
+const [output,setOutput]= useState(outputPlan);
 
 const sumInput=()=>{
     var sum =0
@@ -38,6 +45,7 @@ const addTask = (userInput,userAmount) =>{
     copy = [...copy,{id:input.length+1,input:userInput,amount:userAmount,delete:false}];
     setInput(copy)
     setInputTotal(sumInput()+Number(userAmount))
+    addInputplan(dispatch,copy)
    
 }
 
@@ -72,6 +80,7 @@ const addTaskOut =(userOutPut,userOutAmount)=>{
     copy=[...copy,{id:output.length+1,output:userOutPut,amount:userOutAmount}];
     setOutput(copy)
     setOutputTotal(sumOutput()+Number(userOutAmount))
+    addOutputplan(dispatch,copy)
 }
 
 
@@ -89,6 +98,8 @@ const handleDelete=(e)=>{
     setOutput(filterOut)
     setInputTotal(sumInput())
     setOutputTotal(sumOutput())
+    addOutputplan(dispatch,filterOut)
+    addInputplan(dispatch,filter)
     
 }
 
@@ -106,11 +117,18 @@ const handleChangeAmount=(e)=>{
 }
 
 const handleSubmit=(e)=>{
-    e.preventDefault();
-    addTask(userInput,userAmount);
-    setUserInput("")
-    setUserAmount("")
-    setActiveContainer(false)
+    try{
+        e.preventDefault();
+        addTask(userInput,userAmount);
+        setUserInput("")
+        setUserAmount("")
+        setActiveContainer(false)
+
+    }catch{}
+
+    
+
+  
 }
 
 /*---------------add output------------------- */

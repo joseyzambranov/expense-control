@@ -15,8 +15,7 @@ import {
 } from "redux-persist"
 
 import storage from "redux-persist/lib/storage";
-
-
+import expensePlanRedux from "./expensePlanRedux";
 
 const persistConfig={
     key:"root",
@@ -26,9 +25,13 @@ const persistConfig={
 
 const rootRouter = combineReducers({user:userRedux,
                                     inputActual:inputActualRedux,
-                                    outputActual:outputActualRedux})
+                                    outputActual:outputActualRedux,
+                                    expensePlan:expensePlanRedux})
+
 const persistedReducer  = persistReducer(persistConfig,rootRouter)
+
 export const store = configureStore({
+
     reducer:persistedReducer,
     middleware:(getDefaultMiddleware)=>
     getDefaultMiddleware({

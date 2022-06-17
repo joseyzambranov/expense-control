@@ -6,14 +6,31 @@ import "../../index.css"
 import OutputList from "./OutputList";
 import ActualSpending from "./ActualSpending";
 import { useDispatch, useSelector } from "react-redux";
-import { addInputplan, addOutputplan } from "../../redux/apiCall";
+import { addInputPlan, addInputplan, addOutputplan } from "../../redux/apiCall";
 
 export default function Plan({inputTotal,outputTotal}){
 
+
+
     const dispatch =useDispatch()
 
+    const user = useSelector((state)=>state.user)
     const inputPlan = useSelector((state)=>state.expensePlan.inputsPlan)
     const outputPlan =useSelector((state)=>state.expensePlan.outputPlan)
+
+
+    useEffect(()=>{
+        try{
+            const inputD = {...inputPlan[0]}
+            const inpu =  {date:inputD,userId:user.currentUser.others._id}
+            //addInputPlan(dispatch,inpu)
+            console.log(inpu)
+        }catch{}
+
+        
+
+    },[dispatch,user,inputPlan])
+
 
 const [input,setInput]= useState(inputPlan);
 const [output,setOutput]= useState(outputPlan);
@@ -177,6 +194,8 @@ useEffect(()=>{
  setOutputTotal(sumOutput())
     
 })
+
+
 
 return(
     <>

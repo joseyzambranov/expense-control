@@ -17,7 +17,7 @@ export const expensePlanSlice = createSlice({
         },
         addInputPlanSuccess:(state,action)=>{
             state.isFetching=false;
-            state.inputsPlan.push(action.payload);
+            state.inputsPlan=action.payload;
         },
         addInputPlanFailure:(state)=>{
             state.isFetching=false;
@@ -31,9 +31,33 @@ export const expensePlanSlice = createSlice({
         addOutputPlanPush:(state,action)=>{
             state.outputPlan=action.payload;
         },
+        //GET INPUT PLAN
+        getInputPlanStart:(state)=>{
+            state.isFetching=true;
+            state.error=true;
+        },
+        getInputPlanSuccess:(state,action)=>{
+            state.isFetching=false;
+            state.inputs=action.payload;
+        },
+        getInputPlanFailure:(state)=>{
+            state.isFetching=false;
+            state.error=true;
+        }
 
     }
 })
 
-export const {addInputPlanStart,addInputPlanSuccess,addInputPlanPush,addOutputPlanPush,addInputPlanFailure}=expensePlanSlice.actions
+export const {
+
+              addInputPlanStart,
+              addInputPlanSuccess,
+              addInputPlanPush,
+              addOutputPlanPush,
+              addInputPlanFailure,
+              getInputPlanStart,
+              getInputPlanSuccess,
+              getInputPlanFailure
+            
+            }=expensePlanSlice.actions
 export default expensePlanSlice.reducer

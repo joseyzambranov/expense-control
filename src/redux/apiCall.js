@@ -24,7 +24,7 @@ import { getOutputActualFailure,
          addOutputActualFailure,
          outputLogout
        } from "./outputActualRedux"
-import { addInputPlanPush, addOutputPlanPush } from "./expensePlanRedux"
+import { addInputPlanFailure, addInputPlanPush, addInputPlanStart, addInputPlanSuccess, addOutputPlanPush, getInputPlanFailure, getInputPlanStart, getInputPlanSuccess } from "./expensePlanRedux"
 
 /*------------------------------USER------------------------------------*/
 
@@ -142,13 +142,38 @@ export const logoutOutputActual = (dispatch)=>{
     dispatch(outputLogout())
 }
 /*-----------------------------EXPENSE PLAN--------------------------------------*/
-//ADD INPUT PLAN
+//ADD INPUT PLAN NO USER
 
 export const addInputplan =(dispatch,input)=>{
     dispatch(addInputPlanPush(input))
 }
-//ADD OUTPUT PLAN
+//ADD OUTPUT PLAN  NO USER
 
 export const addOutputplan =(dispatch,output)=>{
     dispatch(addOutputPlanPush(output))
+}
+
+//GET INPUT PLAN
+
+export const getInputPlan = async(dispatch, id)=>{
+    dispatch(getInputPlanStart())
+    try{
+        const res= await privateRequest.get(`inputPlan/find/${id}`)
+        dispatch(getInputPlanSuccess(res.data))
+    }catch(err){
+        dispatch(getInputPlanFailure())
+    }
+}
+
+//ADD INPUT PLAN
+
+export const addInputPlan = async (dispatch,inputPlan)=>{
+    dispatch(addInputPlanStart())
+    try{
+        const res = await privateRequest.post("inputPlan/",inputPlan)
+        dispatch(addInputPlanSuccess(res.data))
+
+    }catch(err){
+        dispatch(addInputPlanFailure())
+    }
 }

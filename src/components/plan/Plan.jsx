@@ -6,7 +6,7 @@ import "../../index.css"
 import OutputList from "./OutputList";
 import ActualSpending from "./ActualSpending";
 import { useDispatch, useSelector } from "react-redux";
-import { addInputPlan, addInputplan, addOutputplan } from "../../redux/apiCall";
+import { addInputPlan, addInputplan, addInputTotal, addOutputplan, addOutputPlanTotal } from "../../redux/apiCall";
 
 export default function Plan({inputTotal,outputTotal}){
 
@@ -14,22 +14,22 @@ export default function Plan({inputTotal,outputTotal}){
 
     const dispatch =useDispatch()
 
-    const user = useSelector((state)=>state.user)
+    //const user = useSelector((state)=>state.user)
     const inputPlan = useSelector((state)=>state.expensePlan.inputsPlan)
     const outputPlan =useSelector((state)=>state.expensePlan.outputPlan)
 
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         try{
             const inputD = {...inputPlan[0]}
-            const inpu =  {date:inputD,userId:user.currentUser.others._id}
-            //addInputPlan(dispatch,inpu)
+            const inpu =  {data:inputD,userId:user.currentUser.others._id}
+            addInputPlan(dispatch,inpu)
             console.log(inpu)
         }catch{}
 
         
 
-    },[dispatch,user,inputPlan])
+    },[dispatch,user,inputPlan])*/
 
 
 const [input,setInput]= useState(inputPlan);
@@ -62,6 +62,8 @@ const addTask = (userInput,userAmount) =>{
     copy = [...copy,{id:input.length+1,input:userInput,amount:userAmount,delete:false}];
     setInput(copy)
     setInputTotal(sumInput()+Number(userAmount))
+    const inputTotal = sumInput()+Number(userAmount)
+    addInputTotal(dispatch,inputTotal)
     addInputplan(dispatch,copy)
    
 }
@@ -97,7 +99,9 @@ const addTaskOut =(userOutPut,userOutAmount)=>{
     copy=[...copy,{id:output.length+1,output:userOutPut,amount:userOutAmount}];
     setOutput(copy)
     setOutputTotal(sumOutput()+Number(userOutAmount))
+    const outputTotal= sumOutput()+Number(userOutAmount)
     addOutputplan(dispatch,copy)
+    addOutputPlanTotal(dispatch,outputTotal)
 }
 
 
@@ -114,9 +118,13 @@ const handleDelete=(e)=>{
     setInput(filter)
     setOutput(filterOut)
     setInputTotal(sumInput())
+    /*const inputTotal = sumInput()
+    addInputTotal(dispatch,inputTotal)*/
     setOutputTotal(sumOutput())
     addOutputplan(dispatch,filterOut)
     addInputplan(dispatch,filter)
+   /* const  outputTotal = sumOutput()
+    addOutputPlanTotal(dispatch,outputTotal)*/
     
 }
 
@@ -192,6 +200,8 @@ const openModaloutput=()=>{
 useEffect(()=>{
  setInputTotal(sumInput())
  setOutputTotal(sumOutput())
+ addInputTotal(dispatch,sumInput())
+ addOutputPlanTotal(dispatch,sumOutput())
     
 })
 

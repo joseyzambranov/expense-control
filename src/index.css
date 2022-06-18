@@ -278,7 +278,8 @@ justify-content: center;
 
 .button-plan{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    padding: 2rem;
 }
 /*--------------TOTAL-------------*/
 .total{

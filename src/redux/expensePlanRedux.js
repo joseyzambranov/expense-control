@@ -5,7 +5,9 @@ export const expensePlanSlice = createSlice({
     name:"expensePlan",
     initialState:{
         inputsPlan:[],
+        inputPlanTotal:[],
         outputPlan:[],
+        outputPlanTotal:[],
         isFetching:false,
         error:false
     },
@@ -27,9 +29,17 @@ export const expensePlanSlice = createSlice({
         addInputPlanPush:(state,action)=>{
             state.inputsPlan=action.payload;
         },
+        //ADD INPUT TOTAL NO USER
+        addInputTotalPush:(state,action)=>{
+            state.inputPlanTotal=action.payload;
+        },
         // ADD OUPUT PLAN NO USER
         addOutputPlanPush:(state,action)=>{
             state.outputPlan=action.payload;
+        },
+        //ADD OUTPUT TOTAL NO USER
+        addOutputPlanTtotalPush:(state,action)=>{
+            state.outputPlanTotal=action.payload;
         },
         //GET INPUT PLAN
         getInputPlanStart:(state)=>{
@@ -38,7 +48,7 @@ export const expensePlanSlice = createSlice({
         },
         getInputPlanSuccess:(state,action)=>{
             state.isFetching=false;
-            state.inputs=action.payload;
+            state.inputsPlan=action.payload;
         },
         getInputPlanFailure:(state)=>{
             state.isFetching=false;
@@ -57,7 +67,9 @@ export const {
               addInputPlanFailure,
               getInputPlanStart,
               getInputPlanSuccess,
-              getInputPlanFailure
+              getInputPlanFailure,
+              addInputTotalPush,
+              addOutputPlanTtotalPush
             
             }=expensePlanSlice.actions
 export default expensePlanSlice.reducer

@@ -12,7 +12,10 @@ import { addInputActualFailure,
          getTwoFirstInputActualStart,
          getTwoFirstInputActualSuccess,
          getTwoFirstInputActualFailure,
-         inputLogout, } from "./inputActualRedux"
+         inputLogout,
+         deleteInputActualStart,
+         deleteInputActualSuccess,
+         deleteInputActualFailure, } from "./inputActualRedux"
 import { getOutputActualFailure,
          getOutputActualStart, 
          getOutputActualSuccess,
@@ -22,9 +25,12 @@ import { getOutputActualFailure,
          addOutputActualStart,
          addOutputActualSuccess,
          addOutputActualFailure,
-         outputLogout
+         outputLogout,
+         deleteOutputActualStart,
+         deleteOutputActualSuccess,
+         deleteOutputActualFailure
        } from "./outputActualRedux"
-import { addInputPlanFailure, addInputPlanPush, addInputPlanStart, addInputPlanSuccess, addOutputPlanPush, getInputPlanFailure, getInputPlanStart, getInputPlanSuccess } from "./expensePlanRedux"
+import { addInputPlanFailure, addInputPlanPush, addInputPlanStart, addInputPlanSuccess, addInputTotalPush, addOutputPlanPush, addOutputPlanTtotalPush, getInputPlanFailure, getInputPlanStart, getInputPlanSuccess } from "./expensePlanRedux"
 
 /*------------------------------USER------------------------------------*/
 
@@ -89,6 +95,16 @@ export const addInputActual = async(dispatch,input)=>{
         dispatch(addInputActualFailure())
     }
 }
+//DELETE INPUT
+export const deleteInputActual = async(id,dispatch)=>{
+    dispatch(deleteInputActualStart())
+    try{
+        const res = await privateRequest.delete(`input/${id}`)
+        dispatch(deleteInputActualSuccess(res))
+    }catch(err){
+        dispatch(deleteInputActualFailure())
+    }
+}
 
 //LOGOUT INPUT
 
@@ -136,6 +152,16 @@ export const addOutputActual = async(dispatch,input)=>{
         dispatch(addOutputActualFailure())
     }
 }
+//DELETE OUTPUT
+export const deleteOutputActual = async(id,dispatch)=>{
+    dispatch(deleteOutputActualStart())
+    try{
+        const res = await privateRequest.delete(`output/${id}`)
+        dispatch(deleteOutputActualSuccess(res))
+    }catch(err){
+        dispatch(deleteOutputActualFailure())
+    }
+}
 //LOGOUT OUTPUT
 
 export const logoutOutputActual = (dispatch)=>{
@@ -147,10 +173,22 @@ export const logoutOutputActual = (dispatch)=>{
 export const addInputplan =(dispatch,input)=>{
     dispatch(addInputPlanPush(input))
 }
+
+//ADD INPUT TOTAL NO USER
+
+export const addInputTotal = (dispatch,inputTotal)=>{
+    dispatch(addInputTotalPush(inputTotal))
+}
+
 //ADD OUTPUT PLAN  NO USER
 
 export const addOutputplan =(dispatch,output)=>{
     dispatch(addOutputPlanPush(output))
+}
+
+//ADD OUTPUT PLAN TOTAL NO USER
+export const addOutputPlanTotal =(dispatch,outputTotal)=>{
+    dispatch(addOutputPlanTtotalPush(outputTotal))
 }
 
 //GET INPUT PLAN

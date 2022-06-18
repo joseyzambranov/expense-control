@@ -2,8 +2,44 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Title from "../components/title/Title"
 import Date from "../components/date/DateTilte"
+import { useDispatch, useSelector } from "react-redux"
+import { format } from 'timeago.js';
+import { deleteInputActual, deleteOutputActual, getOutputActual } from "../redux/apiCall"
+import { useEffect } from "react"
 
 export default function Table (){
+
+    const dispatch = useDispatch()
+
+    const user =useSelector((state)=>state.user)
+    const input = useSelector((state)=>state.inputActual.inputs)
+    const output = useSelector((state)=>state.outputActual.outputs)
+
+    const handleDelete =(id)=>{
+        deleteInputActual(id,dispatch)
+    }
+
+    const handleDeleteOutput =(id)=>{
+        deleteOutputActual(id,dispatch)
+        getOutputActual(dispatch,user.currentUser.others._id)
+       
+    }
+
+    /*useEffect(()=>{
+            
+        try{
+
+          //  getInputActual(dispatch,user.currentUser.others._id)
+          //  getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            getOutputActual(dispatch,user.currentUser.others._id)
+           // getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+
+    
+        }catch{}
+
+            
+    },[dispatch,user])  */
+
     return(
     <>
     <Header />
@@ -28,38 +64,23 @@ export default function Table (){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
+                        {input.map(i=>{
+                            return(<>
+                           
+                                <tr>
+                                        <td>{i._id}</td>
+                                        <td>{format(i.createdAt)}</td>
+                                        <td>{i.input}</td>
+                                        <td>{i.price}</td>
+                                        <td><i className='bx bx-edit'></i> <i onClick={()=>handleDelete(i._id)} 
+                                                                              className='bx bx-trash '></i></td>
+                                    </tr>
+                                   
+                                </>
+                            )
+                        })}
                         </tbody>
+
                     </table>
                 </div>
 
@@ -81,37 +102,20 @@ export default function Table (){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
+                            {output.map(i=>{
+                                return(<>
+                                <tr>
+                                <td>{i._id}</td>
+                                <td>{format(i.createdAt)}</td>
+                                <td>{i.output}</td>
+                                <td>{i.price}</td>
+                                <td><i className='bx bx-edit'></i> <i onClick={()=>handleDeleteOutput(i._id)}
+                                                                      className='bx bx-trash'></i></td>
                             </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
-
-                            <tr>
-                                <td>0001</td>
-                                <td>12/01/2022</td>
-                                <td>gas</td>
-                                <td>250</td>
-                                <td><i className='bx bx-edit'></i> <i className='bx bx-trash'></i></td>
-                            </tr>
+                                
+                                        </>)
+                            })}
+                            
                         </tbody>
                     </table>
                 </div>

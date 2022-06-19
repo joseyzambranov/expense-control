@@ -4,14 +4,13 @@ import Title from "../components/title/Title"
 import Date from "../components/date/DateTilte"
 import { useDispatch, useSelector } from "react-redux"
 import { format } from 'timeago.js';
-import { deleteInputActual, deleteOutputActual, getOutputActual } from "../redux/apiCall"
-import { useEffect } from "react"
+import { deleteInputActual, deleteOutputActual } from "../redux/apiCall"
+import { Link } from "react-router-dom"
 
 export default function Table (){
 
     const dispatch = useDispatch()
 
-    const user =useSelector((state)=>state.user)
     const input = useSelector((state)=>state.inputActual.inputs)
     const output = useSelector((state)=>state.outputActual.outputs)
 
@@ -21,24 +20,10 @@ export default function Table (){
 
     const handleDeleteOutput =(id)=>{
         deleteOutputActual(id,dispatch)
-        getOutputActual(dispatch,user.currentUser.others._id)
        
     }
 
-    /*useEffect(()=>{
-            
-        try{
-
-          //  getInputActual(dispatch,user.currentUser.others._id)
-          //  getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            getOutputActual(dispatch,user.currentUser.others._id)
-           // getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
-
-    
-        }catch{}
-
-            
-    },[dispatch,user])  */
+    console.log(input.map((i)=>i.createdAt))
 
     return(
     <>
@@ -67,16 +52,31 @@ export default function Table (){
                         {input.map(i=>{
                             return(<>
                            
-                                <tr>
+                                    <tr>
                                         <td>{i._id}</td>
                                         <td>{format(i.createdAt)}</td>
                                         <td>{i.input}</td>
                                         <td>{i.price}</td>
-                                        <td><i className='bx bx-edit'></i> <i onClick={()=>handleDelete(i._id)} 
-                                                                              className='bx bx-trash '></i></td>
+                                        <td>
+                                            <div>
+
+                                            <Link to={"/InputEdit/" + i._id}>
+                                                <button><i className='bx bx-edit'></i></button>
+                                             </Link> 
+
+                                           <button onClick={()=>handleDelete(i._id)}>
+                                                <i  
+                                                   className='bx bx-trash '></i>
+                                            </button>
+                                            
+                                            </div> 
+                                        </td>
                                     </tr>
+                                    
+                                    
                                    
                                 </>
+                                
                             )
                         })}
                         </tbody>
@@ -109,8 +109,22 @@ export default function Table (){
                                 <td>{format(i.createdAt)}</td>
                                 <td>{i.output}</td>
                                 <td>{i.price}</td>
-                                <td><i className='bx bx-edit'></i> <i onClick={()=>handleDeleteOutput(i._id)}
-                                                                      className='bx bx-trash'></i></td>
+                                <td>
+                                    
+                                    <div>
+
+                                    <Link to={"/OutputEdit/" + i._id}>
+                                        <button><i className='bx bx-edit'></i></button>
+                                    </Link> 
+
+                                    <button onClick={()=>handleDeleteOutput(i._id)} >
+                                        <i 
+                                        className='bx bx-trash '></i>
+                                    </button>
+
+                                    </div> 
+                                    
+                                </td>
                             </tr>
                                 
                                         </>)

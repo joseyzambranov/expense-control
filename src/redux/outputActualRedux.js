@@ -52,6 +52,18 @@ export const outputActualSlice = createSlice({
             state.isFetching=false;
             state.error=true
 
+        },//UPDATE OUTPUT
+        updateOutputActualStart:(state)=>{
+            state.isFetching=true;
+            state.error=true;
+        },
+        updateOutputActualSuccess:(state,action)=>{
+            state.isFetching=false;
+            state.outputs[state.outputs.findIndex((item)=>item._id===action.payload.id)]=action.payload.output;
+        },
+        updateOutputActualFailure:(state)=>{
+            state.isFetching=false;
+            state.error=true;
         },
          //DELETE OUTPUT
          deleteOutputActualStart:(state)=>{
@@ -60,7 +72,7 @@ export const outputActualSlice = createSlice({
         },
         deleteOutputActualSuccess:(state,action)=>{
             state.isFetching=false;
-            state.inputs.splice(
+            state.outputs.splice(
                 state.outputs.findIndex((item)=>item._id===action.payload),1
             )
         },
@@ -90,5 +102,8 @@ export const{getOutputActualStart,
              outputLogout,
              deleteOutputActualStart,
              deleteOutputActualSuccess,
-             deleteOutputActualFailure}=outputActualSlice.actions;
+             deleteOutputActualFailure,
+             updateOutputActualStart,
+             updateOutputActualSuccess,
+             updateOutputActualFailure}=outputActualSlice.actions;
 export default outputActualSlice.reducer 

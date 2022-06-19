@@ -15,7 +15,10 @@ import { addInputActualFailure,
          inputLogout,
          deleteInputActualStart,
          deleteInputActualSuccess,
-         deleteInputActualFailure, } from "./inputActualRedux"
+         deleteInputActualFailure,
+         updatInputActualStart,
+         updateInputActualSuccess,
+         updateInputActualFailure, } from "./inputActualRedux"
 import { getOutputActualFailure,
          getOutputActualStart, 
          getOutputActualSuccess,
@@ -28,7 +31,10 @@ import { getOutputActualFailure,
          outputLogout,
          deleteOutputActualStart,
          deleteOutputActualSuccess,
-         deleteOutputActualFailure
+         deleteOutputActualFailure,
+         updateOutputActualStart,
+         updateOutputActualSuccess,
+         updateOutputActualFailure
        } from "./outputActualRedux"
 import { addInputPlanFailure, addInputPlanPush, addInputPlanStart, addInputPlanSuccess, addInputTotalPush, addOutputPlanPush, addOutputPlanTtotalPush, getInputPlanFailure, getInputPlanStart, getInputPlanSuccess } from "./expensePlanRedux"
 
@@ -94,13 +100,25 @@ export const addInputActual = async(dispatch,input)=>{
     }catch(err){
         dispatch(addInputActualFailure())
     }
+}//UPDATE INPUT
+export const updateInput = async (id,input, dispatch)=>{
+    dispatch(updatInputActualStart())
+    try{
+      
+      const res = await privateRequest.put(`input/${id}`,input);
+        dispatch(updateInputActualSuccess(res.data))
+
+
+    }catch(err){
+        dispatch(updateInputActualFailure());
+    }
 }
 //DELETE INPUT
 export const deleteInputActual = async(id,dispatch)=>{
     dispatch(deleteInputActualStart())
     try{
         const res = await privateRequest.delete(`input/${id}`)
-        dispatch(deleteInputActualSuccess(res))
+        dispatch(deleteInputActualSuccess(id))
     }catch(err){
         dispatch(deleteInputActualFailure())
     }
@@ -151,13 +169,25 @@ export const addOutputActual = async(dispatch,input)=>{
     }catch(err){
         dispatch(addOutputActualFailure())
     }
+}//UPDATE OUTPUT
+export const updateOutput = async (id,output, dispatch)=>{
+    dispatch(updateOutputActualStart())
+    try{
+      
+      const res = await privateRequest.put(`output/${id}`,output);
+        dispatch(updateOutputActualSuccess(res.data))
+
+
+    }catch(err){
+        dispatch(updateOutputActualFailure());
+    }
 }
 //DELETE OUTPUT
 export const deleteOutputActual = async(id,dispatch)=>{
     dispatch(deleteOutputActualStart())
     try{
         const res = await privateRequest.delete(`output/${id}`)
-        dispatch(deleteOutputActualSuccess(res))
+        dispatch(deleteOutputActualSuccess(id))
     }catch(err){
         dispatch(deleteOutputActualFailure())
     }

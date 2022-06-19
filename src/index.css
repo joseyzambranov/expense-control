@@ -348,7 +348,7 @@ footer{
 
 }
 .section-table{
-    
+        min-height: 60vh;
         padding: 2rem 2rem 0 2rem;
     
 }

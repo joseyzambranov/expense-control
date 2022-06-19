@@ -53,6 +53,20 @@ export const inputActualSlice = createSlice({
             state.error=true
 
         },
+        //UPDATE
+        updatInputActualStart:(state)=>{
+            state.isFetching=true;
+            state.error=true;
+        },
+        updateInputActualSuccess:(state,action)=>{
+            state.isFetching=false;
+            state.inputs[state.inputs.findIndex((item)=>item._id===action.payload.id)]=action.payload.input
+            ;
+        },
+        updateInputActualFailure:(state)=>{
+            state.isFetching=false;
+            state.error=true;
+        },
         //DELETE INPUT
         deleteInputActualStart:(state)=>{
             state.isFetching=false;
@@ -91,6 +105,9 @@ export const{
              inputLogout,
              deleteInputActualStart,
              deleteInputActualSuccess,
-             deleteInputActualFailure
+             deleteInputActualFailure,
+             updatInputActualStart,
+             updateInputActualSuccess,
+             updateInputActualFailure
                                     }=inputActualSlice.actions;
 export default inputActualSlice.reducer 

@@ -99,12 +99,16 @@ export default function Login(){
                             <span  className="spending-plan-item blue" >Email</span>
                             
                             <div>
-                                <input  className="spending-plan-item white" type="text"  onChange={(e)=>setEmail(e.target.value)} />
+                                <input  className="spending-plan-item white" 
+                                        type="text"  
+                                        onChange={(e)=>setEmail(e.target.value)} />
                             </div>
                             <span  className="spending-plan-item blue" >Password</span>
                             
                             <div>
-                                <input  className="spending-plan-item white" type="password" onChange={(e)=>setUserPassword(e.target.value)}  />
+                                <input  className="spending-plan-item white" 
+                                        type="password" 
+                                        onChange={(e)=>setUserPassword(e.target.value)}  />
                             </div>
                         
                         </div>

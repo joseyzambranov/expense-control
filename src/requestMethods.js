@@ -8,7 +8,7 @@ const BASE_URL = "http://localhost:5000/api/"
 
 const TOKEN =authHeader()//user&&user.currentUser==="undefined"?"":user.currentUser.accessToken
  
-console.log(authHeader())
+//console.log(authHeader())
 
 export const publicRequest =axios.create({
     baseURL:BASE_URL

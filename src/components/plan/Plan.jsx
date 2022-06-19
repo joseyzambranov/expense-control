@@ -222,14 +222,14 @@ return(
         </div>
         <div className="spending-plan-body-total">
             <div className="spending-plan-item-total item-a red">
-                <p>total gastos</p>
+                <p>Total Output</p>
                 <div className="spending-plan-item-total-num white">
                     <p className="text-black">{OutputTotal} $</p>
                 </div>
             </div>
 
             <div className="spending-plan-item-total blue">
-                <p>total entradas</p>
+                <p>Total Input</p>
                 <div className="spending-plan-item-total-num white ">
                     <p className="text-black">{inputTotalPlan} $</p>
                 </div>

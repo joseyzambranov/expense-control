@@ -83,8 +83,9 @@ const handleClick =(e)=>{
     e.preventDefault()
 try{
     updateInput(inputId,inputs,dispatch)
-}catch{}
     getInputActual(dispatch,user.currentUser.others._id)
+}catch{}
+    
     return navigate("/Table")
 
 }

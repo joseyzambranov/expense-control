@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Title from "../components/title/Title"
-import { getInputActual, getOutputActual, updateInput, updateOutput } from "../redux/apiCall"
+import { getOutputActual, updateOutput } from "../redux/apiCall"
 
 const Container = styled.div`
 position: relative;
@@ -86,8 +86,9 @@ const handleClick =(e)=>{
     e.preventDefault()
 try{
     updateOutput(outputId,outputs,dispatch)
-}catch{}
     getOutputActual(dispatch,user.currentUser.others._id)
+}catch{}
+   
     return navigate("/Table")
 
 }

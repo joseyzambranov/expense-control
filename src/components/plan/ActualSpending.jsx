@@ -7,17 +7,45 @@ import OutputActual from "./OutputActual"
 import InputActualTotal from "./InputActualTotal"
 import OutputActualTotal from "./OutputActualTotal"
 import { addInputActual, addOutputActual, getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../../redux/apiCall"
+import ButtonAndTotal from "../buttonAndTotal/ButtonAndTotal"
 
 export default function ActualSpending({inputTotal,outputTotal}){
 
     const dispatch =useDispatch()
     const user =useSelector((state)=>state.user)
+
+    
+    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
+
+    const inputA = useSelector((state)=>state.inputActual.inputs)
+
+    const outputA = useSelector((state)=>state.outputActual.outputs)
   
     /*-----------------GET TWO FIRST -----------------------*/
 
-    const twoFirstInput= useSelector((state)=>state.inputActual.twoFirstInputs)
+   // const twoFirstInput= useSelector((state)=>state.inputActual.twoFirstInputs)
 
-    const twoFirstOutput=useSelector((state)=>state.outputActual.twoFirstOutputs)
+    //const twoFirstOutput=useSelector((state)=>state.outputActual.twoFirstOutputs)
+
+    const dateFilter1 =new Date(`01 ${inputFilter}`).toISOString()
+    const dateFilter2 =new Date(`31 ${inputFilter}`).toISOString()
+
+    const twoFirstInputFilter = inputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2).reverse()
+
+    twoFirstInputFilter.length = 2
+
+    const twoFirstOutputFilter = outputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2).reverse()
+    twoFirstOutputFilter.length= 2
+
+     /*-----------------GET INPUT AND OUTPUT TOTAL -----------------------*/
+
+   /* const inputAfilter = inputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
+
+    const inputAtotal = inputAfilter.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
+
+    const outputAfilter = outputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
+
+    const outputAtotal = outputAfilter.map(i=>i.price).reduce((p,c)=>p+c,0)/*
 
     /*----------------------------ACTIVE AND DESACTIVE MODAL--------------------------------- */
     
@@ -102,9 +130,9 @@ const handleClickOutput=(e)=>{
         </div>
 
         <div className="spending-plan-body-total">
-          {<InputActul input={twoFirstInput} />}
+          {<InputActul input={twoFirstInputFilter} />}
 
-          {<OutputActual output={twoFirstOutput} />}
+          {<OutputActual output={twoFirstOutputFilter} />}
         <div>
 
             </div>
@@ -223,6 +251,8 @@ const handleClickOutput=(e)=>{
     </div>
 
         </section>
+
+  
 
         </>
 

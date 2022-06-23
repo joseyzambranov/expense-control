@@ -5,6 +5,7 @@ export const inputActualSlice = createSlice({
     initialState:{
     inputs:[],
     twoFirstInputs:[],
+    inputFilter:"JUNE 2022",
     total:0,
     isFetching:false,
     error:false
@@ -87,6 +88,10 @@ export const inputActualSlice = createSlice({
             state.inputs=[];
             state.twoFirstInputs=[]
             state.total=0;
+        },
+        //ADD FILTER INPUT
+        inputFilterActual:(state,action)=>{
+            state.inputFilter=action.payload;
         }
 
     }
@@ -108,6 +113,7 @@ export const{
              deleteInputActualFailure,
              updatInputActualStart,
              updateInputActualSuccess,
-             updateInputActualFailure
+             updateInputActualFailure,
+             inputFilterActual
                                     }=inputActualSlice.actions;
 export default inputActualSlice.reducer 

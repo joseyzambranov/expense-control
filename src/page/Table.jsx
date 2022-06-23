@@ -1,7 +1,7 @@
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Title from "../components/title/Title"
-import Date from "../components/date/DateTilte"
+import DateTitle from "../components/date/DateTilte"
 import { useDispatch, useSelector } from "react-redux"
 import { format } from 'timeago.js';
 import { deleteInputActual, deleteOutputActual } from "../redux/apiCall"
@@ -13,6 +13,7 @@ export default function Table (){
 
     const input = useSelector((state)=>state.inputActual.inputs)
     const output = useSelector((state)=>state.outputActual.outputs)
+    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
 
     const handleDelete =(id)=>{
         deleteInputActual(id,dispatch)
@@ -23,14 +24,22 @@ export default function Table (){
        
     }
 
-    console.log(input.map((i)=>i.createdAt))
+    const dateFilter1 =new Date(`01 ${inputFilter}`).toISOString()
+    const dateFilter2 =new Date(`31 ${inputFilter}`).toISOString()
+
+    const inputF = input.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
+    const outputF = output.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)  
+
+    
+
+   console.log(outputF)
 
     return(
     <>
     <Header />
 
 <Title/>
-<Date/>
+<DateTitle/>
       <section className="section-table table">
             {/*--TABLE INPUT--*/}
             <div>
@@ -49,7 +58,7 @@ export default function Table (){
                             </tr>
                         </thead>
                         <tbody>
-                        {input.map(i=>{
+                        {inputF.map(i=>{
                             return(<>
                            
                                     <tr>
@@ -102,7 +111,7 @@ export default function Table (){
                             </tr>
                         </thead>
                         <tbody>
-                            {output.map(i=>{
+                            {outputF.map(i=>{
                                 return(<>
                                 <tr>
                                 <td>{i._id}</td>

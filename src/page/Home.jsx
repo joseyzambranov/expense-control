@@ -13,8 +13,17 @@ export default function Home(){
     const user =useSelector((state)=>state.user)
     const dispatch = useDispatch()
    
-    const outputTotal = useSelector((state)=>state.outputActual.total)
-    const inputTotal = useSelector((state)=>state.inputActual.total)
+    //const outputTotal = useSelector((state)=>state.outputActual.total)
+    //const inputTotal = useSelector((state)=>state.inputActual.total)
+
+    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
+
+    const inputA = useSelector((state)=>state.inputActual.inputs)
+
+    const outputA = useSelector((state)=>state.outputActual.outputs)
+
+    const dateFilter1 =new Date(`01 ${inputFilter}`).toISOString()
+    const dateFilter2 =new Date(`31 ${inputFilter}`).toISOString()
 
     /*-------------------------- GET TWO FIRST ,  GET TOTAL----------------------------- */
 
@@ -23,9 +32,9 @@ export default function Home(){
         try{
 
             getInputActual(dispatch,user.currentUser.others._id)
-            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+           // getTwoFirstInputActual(dispatch,user.currentUser.others._id)
             getOutputActual(dispatch,user.currentUser.others._id)
-            getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+            //getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
 
     
         }catch{}
@@ -33,7 +42,15 @@ export default function Home(){
             
     },[dispatch,user])  
 
-        /*--------------------------total output----------------------------- */
+     /*-----------------GET INPUT AND OUTPUT TOTAL -----------------------*/
+
+   const inputAfilter = inputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
+
+    const inputTotal = inputAfilter.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
+
+    const outputAfilter = outputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
+
+    const outputTotal = outputAfilter.map(i=>i.price).reduce((p,c)=>p+c,0)
 
 
     return(

@@ -1,6 +1,8 @@
 import "../../index.css";
 import styled from "styled-components"
-//import "./dateTitle.css"
+import {useDispatch, useSelector} from "react-redux"
+import { useState } from "react";
+import { inputFilterActual } from "../../redux/inputActualRedux";
 
 const Select = styled.select`
 
@@ -31,15 +33,53 @@ text-align: center;
 
 
 export default function DateTitle(){
+
+    const dispatch = useDispatch()
+
+    const input = useSelector((state)=>state.inputActual.inputs)
+    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
+
+
+    const month = [
+        "DECEMBER",
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER"
+    ] 
+
+    const re = /(?<year>\d{4})-(?<month>\d{2})/ 
+
+    const date = input.map((i)=>new Date(i.createdAt))
+
+    const filter = date.map((i)=>re.exec(i.toISOString()))
+
+   const dateFilter = filter.map((i)=>`${month[Number(i.groups.month)]} ${i.groups.year}`)
+
+   const resultFilter = dateFilter.filter((item,index)=>{
+
+    return dateFilter.indexOf(item)===index
+   
+    })
+
     return(
         <section  className="section-title-center section">
 
-            <Select name="date" id="date-select">
+            <Select name="date" id="date-select" onClick={e=>dispatch(inputFilterActual(e.target.value))}>
 
-            <Option selected value="">SELECT A DATE </Option>
-            <Option value="">JANUARY 2022</Option>
-            <Option value="">FEBRUARY 2022</Option>
-            <Option value="">MARCH 2022</Option>
+            <Option value={inputFilter?inputFilter:"SELECT A DATE"} >{inputFilter?inputFilter:"SELECT A DATE"}</Option>
+
+            {resultFilter.map((i)=>(
+
+                <Option value={i} >{i}</Option>
+            ))}
 
             </Select>
 

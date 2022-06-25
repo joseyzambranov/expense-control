@@ -1,7 +1,10 @@
 import {loginStart,
         loginFailure,
         loginSuccess,
-        logout} from "./userRedux"
+        logout,
+        registerStart,
+        registerFailure,
+        registerSuccess} from "./userRedux"
 import {privateRequest, publicRequest} from "../requestMethods.js"
 import { addInputActualFailure, 
          addInputActualStart, 
@@ -53,6 +56,20 @@ export const login = async (dispatch,user)=>{
     }catch(err){
         dispatch(loginFailure())
     }
+}
+
+//REGISTER
+
+export const register = async (dispatch,user)=>{
+    dispatch(registerStart())
+    try{
+        const res = await publicRequest.post("auth/register",user)
+        dispatch(registerSuccess(res.data))
+
+    }catch(err){
+        dispatch(registerFailure())
+    }
+
 }
 
 //LOGOUT USER

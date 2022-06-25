@@ -129,6 +129,13 @@ export default function Login(){
                                  <span>Not a User</span>
                             </Link>
 
+                          
+
+                        </NotUser>
+                        <NotUser>
+                        <Link to="/Register">
+                             <span>Recovery Password</span>
+                        </Link>
                         </NotUser>
                         
                     </Form>

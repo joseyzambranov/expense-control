@@ -28,11 +28,7 @@ export default function Table (){
     const dateFilter2 =new Date(`31 ${inputFilter}`).toISOString()
 
     const inputF = input.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
-    const outputF = output.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)  
-
-    
-
-   console.log(outputF)
+    const outputF = output.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
 
     return(
     <>

@@ -101,6 +101,18 @@ p{
   font-size: var(--big-font-size);
 }
 
+/*-------------LOADING-------------*/
+
+.loader::after {
+    content: "";
+    background: url("../src/my-loader.svg") no-repeat;
+    display: inline-block;
+    background-size: 50px;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+  }
+
 /*---------------------HEADER--------------------------*/
 
 header{
@@ -482,7 +494,7 @@ th {
         width: 280px;
     }
     .spending-plan-item{
-        width: 120px;
+        width: 110px;
     }
     .spending-plan-item-total{
         width: 120px;

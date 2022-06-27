@@ -18,7 +18,7 @@ return(
     </div>
 
     <div className="total">
-        <h2>SAVED: <span className={`${totalSave>totalPlan?"text-blue":"text-red"}`}> {totalSave}</span> $</h2>
+        <h2>SAVED: <span className={`${totalSave>=totalPlan?"text-blue":"text-red"}`}> {totalSave}</span> $</h2>
     </div>
 
 

@@ -133,7 +133,7 @@ export default function Login(){
 
                         </NotUser>
                         <NotUser>
-                        <Link to="/Register">
+                        <Link to="/ForgotPassword">
                              <span>Recovery Password</span>
                         </Link>
                         </NotUser>

@@ -43,10 +43,7 @@ background-color:var(--blue-color);
 width: 90%;
 height: 60px;
 border-radius: 25px;
-&:disabled{
-    background:var(--black-color);
-    cursor:not-allowed;
-}
+
 
 `
 const NotUser =  styled.div`
@@ -142,7 +139,7 @@ export default function Login(){
 
 
                     <ContainerButton>
-                        <Button onClick={handleClick} >Register</Button>
+                        <Button onClick={handleClick} className={isFetching?"loader":""} >Register</Button>
                     </ContainerButton>
 
                     <MsjError>
@@ -151,7 +148,7 @@ export default function Login(){
 
                     <NotUser>
                         
-                        <Link to="/Register">
+                        <Link to="/ForgotPassword">
                              <span>Recovery Password</span>
                         </Link>
 

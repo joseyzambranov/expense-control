@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { userNologin } from './redux/userRedux';
 import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
+import ForgotPassword from "./page/ForgotPassword"
 function App() {
 
     const dispatch = useDispatch()
@@ -33,6 +34,7 @@ return(
         <Route exact path='/Register'element={<Register />}></Route>
         <Route exact path="/InputEdit/:inputId" element={<InputEdit />}></Route>
         <Route exact path="/OutputEdit/:outputId" element={<OutputEdit />}></Route>
+        <Route exact path="/ForgotPassword" element={<ForgotPassword />}></Route>
     </Routes>    
     
     </BrowserRouter>

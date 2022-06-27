@@ -141,12 +141,12 @@ export default function Login(){
                     </ContainerButton>
 
                     <MsjError>
-                            {error?<Error>Somenthing went wrong...</Error>:geristerTrue&&<Link to="/login"><RegisterTrue>Registration Successfully</RegisterTrue></Link>}
+                            {error?<Error>Somenthing went wrong...</Error>:geristerTrue&&<Link to="/expense-control/login"><RegisterTrue>Registration Successfully</RegisterTrue></Link>}
                     </MsjError>
 
                     <NotUser>
                         
-                        <Link to="/ForgotPassword">
+                        <Link to="/expense-control/ForgotPassword">
                              <span>Recovery Password</span>
                         </Link>
 

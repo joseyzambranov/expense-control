@@ -136,7 +136,7 @@ const handleClickOutput=(e)=>{
         <div>
 
             </div>
-            <Link to="/table">
+            <Link to="/expense-control/table">
             <div className="spending-plan-item-list">
                 <a><i className='bx bx-spreadsheet'></i></a>
             </div>

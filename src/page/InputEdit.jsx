@@ -138,7 +138,7 @@ console.log(inputs)
                      
                         <NotUser>
                         
-                            <Link to="/Table">
+                            <Link to="/expense-control/Table">
                                  <span>Back</span>
                             </Link>
 

@@ -96,8 +96,6 @@ export default function Login(){
         }catch{}     
        
     }
-  
-    console.log(error)
 
     return(<>
         <Header />

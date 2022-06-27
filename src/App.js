@@ -30,7 +30,7 @@ return(
     <Routes>
         <Route exact path='/'element={<Home />}></Route>
         <Route exact path='/Table'element={<Table />}></Route>
-        <Route exact path='/Login'element={user?<Navigate to="/" />:<Login />}></Route>
+        <Route exact path='/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
         <Route exact path='/Register'element={<Register />}></Route>
         <Route exact path="/InputEdit/:inputId" element={<InputEdit />}></Route>
         <Route exact path="/OutputEdit/:outputId" element={<OutputEdit />}></Route>

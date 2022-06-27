@@ -62,6 +62,10 @@ font-size:var(--smaller-font-size);
 const Error = styled.span`
 color:var(--red-color);
 `
+const RegisterTrue = styled.span`
+color:var(--blue-color);
+
+`
 
 export default function Login(){
 
@@ -69,6 +73,9 @@ export default function Login(){
     const [password,setUserPassword]=useState("")
     const dispatch = useDispatch()
     const {isFetching,error} = useSelector((state)=>state.user)
+    const [loginTrue,setLoginTrue] = useState(false)
+
+    const user = useSelector((state)=>state.user.currentUser)
 
     const handleClick=(e)=>{
 
@@ -76,15 +83,17 @@ export default function Login(){
         
         try{
             login(dispatch,{email,password})
+            setLoginTrue(true)
             
-        }catch{}
-
-        window.location.reload()
-        
-       
-        
+        }catch{} 
             
     }
+
+    
+    if(!isFetching&&!error&&loginTrue){
+        window.location.reload()
+    }
+ 
     
     return(<>
         <Header />
@@ -115,13 +124,13 @@ export default function Login(){
 
                          <ContainerButton  >
 
-                            <Button onClick={handleClick} >Login</Button>
+                            <Button onClick={handleClick} className={isFetching?"loader":""}>Login</Button>
                            
 
                         </ContainerButton>
                         
                         <MsjError>
-                                {error && <Error>Somenthing went wrong...</Error>}
+                                {error&&<Error>Somenthing went wrong...</Error>}{loginTrue||user&&<Link to="/"><RegisterTrue>is Correct!!!! click here to start</RegisterTrue></Link>}
                         </MsjError>
                         <NotUser>
                         

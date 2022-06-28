@@ -86,7 +86,7 @@ try{
     getInputActual(dispatch,user.currentUser.others._id)
 }catch{}
     
-    return navigate("/Table")
+    return navigate("/expense-control/Table")
 
 }
 

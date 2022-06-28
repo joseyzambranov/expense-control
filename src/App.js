@@ -28,7 +28,7 @@ return(
     
     <BrowserRouter>
     <Routes>
-        <Route exact path='/expense-control'element={<Home />}></Route>
+        <Route exact path='/expense-control/'element={<Home />}></Route>
         <Route exact path='/expense-control/Table'element={<Table />}></Route>
         <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
         <Route exact path='/expense-control/Register'element={<Register />}></Route>

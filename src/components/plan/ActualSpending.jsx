@@ -121,7 +121,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
 const handleClickOutput=(e)=>{
     e.preventDefault()
     if(!user.currentUser){
-        navigate("/expense-control")
+        navigate("/expense-control/login")
     }else{
         try{
             const outpu = {...addOutput,userId:user.currentUser.others._id}

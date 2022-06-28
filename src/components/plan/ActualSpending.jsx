@@ -8,8 +8,12 @@ import InputActualTotal from "./InputActualTotal"
 import OutputActualTotal from "./OutputActualTotal"
 import { addInputActual, addOutputActual, getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../../redux/apiCall"
 import ButtonAndTotal from "../buttonAndTotal/ButtonAndTotal"
+import {useNavigate} from "react-router-dom"
+
 
 export default function ActualSpending({inputTotal,outputTotal}){
+
+    const navigate=useNavigate()
 
     const dispatch =useDispatch()
     const user =useSelector((state)=>state.user)
@@ -82,18 +86,27 @@ export default function ActualSpending({inputTotal,outputTotal}){
         }
         const handleClick=(e)=>{
             e.preventDefault()
+            if(!user.currentUser){
+
+                navigate("/expense-control/login")
+
+            }else{
+
+                try{
+                    const inpu =  {...addInput,userId:user.currentUser.others._id}
+                    addInputActual(dispatch,inpu)
+                    getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+                    getInputActual(dispatch,user.currentUser.others._id)
+                    setInputBigButtom(false) 
+                    
+              }catch{}
+                    getInputActual(dispatch,user.currentUser.others._id)
+                    getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+                    setInputBigButtom(false) 
+
+            }
             
-       try{
-            const inpu =  {...addInput,userId:user.currentUser.others._id}
-            addInputActual(dispatch,inpu)
-            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            getInputActual(dispatch,user.currentUser.others._id)
-            setInputBigButtom(false) 
-            
-      }catch{}
-            getInputActual(dispatch,user.currentUser.others._id)
-            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-            setInputBigButtom(false) 
+       
 
     }
 /*----------------------ADD OUTPUT ACTUAL-------------------------*/   
@@ -107,17 +120,23 @@ export default function ActualSpending({inputTotal,outputTotal}){
 
 const handleClickOutput=(e)=>{
     e.preventDefault()
-    try{
-        const outpu = {...addOutput,userId:user.currentUser.others._id}
-        addOutputActual(dispatch,outpu)
-        getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+    if(!user.currentUser){
+        navigate("/expense-control")
+    }else{
+        try{
+            const outpu = {...addOutput,userId:user.currentUser.others._id}
+            addOutputActual(dispatch,outpu)
+            getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+            getOutputActual(dispatch,user.currentUser.others._id)
+            setOutputBigButtom(false)
+    
+        }catch{}
         getOutputActual(dispatch,user.currentUser.others._id)
+        getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
         setOutputBigButtom(false)
 
-    }catch{}
-    getOutputActual(dispatch,user.currentUser.others._id)
-    getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
-    setOutputBigButtom(false)
+    }
+    
 }
     
     return(

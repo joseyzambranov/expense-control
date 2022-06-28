@@ -65,7 +65,7 @@ export default function InputEdit(){
 const dispatch =useDispatch()
 const [inputs,setInputs]=useState({})
 const location = useLocation()
-const inputId = location.pathname.split("/")[2]
+const inputId = location.pathname.split("/")[3]
 
 const input = useSelector((state)=>state.inputActual.inputs.find((input)=>input._id===inputId))
 

@@ -65,7 +65,7 @@ export default function OutputEdit(){
 const dispatch =useDispatch()
 const [outputs,setOutputs]=useState({})
 const location = useLocation()
-const outputId = location.pathname.split("/")[2]
+const outputId = location.pathname.split("/")[3]
 
 let navigate = useNavigate();
 

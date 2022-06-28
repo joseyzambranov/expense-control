@@ -19,17 +19,17 @@ const openModal=()=>{
         <div className="container-header-tutorial" >
            <div className="container-title-header">
               
-           <i onClick={openModal} class='bx bx-book-alt text-white'></i>
+           <i onClick={openModal} class='bx bx-book-alt text-white-tutorial'></i>
            <div className={`modal  ${activeContainer?"modal-active":""}`}>
                     {/*--MODAL--*/}
                     
-                    <div className="spending-plan-tutorial " >
+                    <div  >
                     
                     <div onClick={closeModal} className="modal-close ">
                         <i className='bx bx-x text-white'></i>
                     </div>
 
-                    <div className="spending-plan tutorial"></div>
+                    <div className="spending-plan-tutorial-img "></div>
         
                     </div>
         

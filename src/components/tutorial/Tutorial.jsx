@@ -3,7 +3,7 @@ import { useState } from "react"
 export default function Tutorial(){
 
 /*------------Modal-------------- */
-const [activeContainer,setActiveContainer]=useState(true)
+const [activeContainer,setActiveContainer]=useState(false)
 
 
 const closeModal =()=>{

@@ -86,7 +86,7 @@ try{
     getInputActual(dispatch,user.currentUser.others._id)
 }catch{}
     
-    return navigate("/Table")
+    return navigate("/expense-control/Table")
 
 }
 
@@ -138,7 +138,7 @@ console.log(inputs)
                      
                         <NotUser>
                         
-                            <Link to="/Table">
+                            <Link to="/expense-control/Table">
                                  <span>Back</span>
                             </Link>
 

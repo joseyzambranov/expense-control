@@ -89,7 +89,7 @@ try{
     getOutputActual(dispatch,user.currentUser.others._id)
 }catch{}
    
-    return navigate("/Table")
+    return navigate("/expense-control/Table")
 
 }
 
@@ -138,7 +138,7 @@ try{
                      
                         <NotUser>
                         
-                            <Link to="/Table">
+                            <Link to="/expense-control/Table">
                                  <span>Back</span>
                             </Link>
 

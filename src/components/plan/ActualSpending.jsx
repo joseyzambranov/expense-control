@@ -88,7 +88,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
             e.preventDefault()
             if(!user.currentUser){
 
-                navigate("/login")
+                navigate("/expense-control/login")
 
             }else{
 
@@ -121,7 +121,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
 const handleClickOutput=(e)=>{
     e.preventDefault()
     if(!user.currentUser){
-        navigate("/login")
+        navigate("/expense-control/login")
     }else{
         try{
             const outpu = {...addOutput,userId:user.currentUser.others._id}
@@ -155,7 +155,7 @@ const handleClickOutput=(e)=>{
         <div>
 
             </div>
-            <Link to="/table">
+            <Link to="/expense-control/table">
             <div className="spending-plan-item-list">
                 <a><i className='bx bx-spreadsheet'></i></a>
             </div>

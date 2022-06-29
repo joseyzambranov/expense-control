@@ -1,6 +1,6 @@
 {
   "name": "expense-control",
-  "homepage": "https://joseyzambranov.github.io/expense-control",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

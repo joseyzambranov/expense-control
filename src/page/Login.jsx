@@ -92,7 +92,7 @@ export default function Login(){
     
     if(!isFetching&&!error&&loginTrue){
         //window.location.reload()
-        window.location.href="/expense-control"
+        window.location.href="/"
     }
  
     
@@ -131,11 +131,11 @@ export default function Login(){
                         </ContainerButton>
                         
                         <MsjError>
-                                {error&&<Error>Somenthing went wrong...</Error>}{loginTrue||user&&<Link to="/expense-control"><RegisterTrue>is Correct!!!! click here to start</RegisterTrue></Link>}
+                                {error&&<Error>Somenthing went wrong...</Error>}{loginTrue||user&&<Link to="/"><RegisterTrue>is Correct!!!! click here to start</RegisterTrue></Link>}
                         </MsjError>
                         <NotUser>
                         
-                            <Link to="/expense-control/Register">
+                            <Link to="/Register">
                                  <span>Not a User</span>
                             </Link>
 
@@ -143,7 +143,7 @@ export default function Login(){
 
                         </NotUser>
                         <NotUser>
-                        <Link to="/expense-control/ForgotPassword">
+                        <Link to="/ForgotPassword">
                              <span>Recovery Password</span>
                         </Link>
                         </NotUser>

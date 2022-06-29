@@ -8,7 +8,7 @@ export default function Title(){
         
         <section className="section-title-center section section-title">
             
-                <h1><Link to="/expense-control" >EXPENCE CONTROL</Link></h1>
+                <h1><Link to="/" >EXPENCE CONTROL</Link></h1>
             
         </section>
         

@@ -65,7 +65,7 @@ export default function Table (){
                                         <td>
                                             <div>
 
-                                            <Link to={"/expense-control/InputEdit/" + i._id}>
+                                            <Link to={"/InputEdit/" + i._id}>
                                                 <button><i className='bx bx-edit'></i></button>
                                              </Link> 
 
@@ -118,7 +118,7 @@ export default function Table (){
                                     
                                     <div>
 
-                                    <Link to={"/expense-control/OutputEdit/" + i._id}>
+                                    <Link to={"/OutputEdit/" + i._id}>
                                         <button><i className='bx bx-edit'></i></button>
                                     </Link> 
 

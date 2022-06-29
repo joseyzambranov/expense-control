@@ -1,17 +1,22 @@
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { tutorialFalse, tutorialTrue } from "../../redux/userRedux"
 
 export default function Tutorial(){
 
-/*------------Modal-------------- */
-const [activeContainer,setActiveContainer]=useState(false)
+const dispacth = useDispatch()
+const tutorial = useSelector((state)=>state.user.tutorial)    
 
+/*------------Modal-------------- */
 
 const closeModal =()=>{
-    setActiveContainer(false)
+    dispacth(tutorialFalse())
 }
 const openModal=()=>{
-    setActiveContainer(true)
+    dispacth(tutorialTrue())
 }
+
+console.log(tutorial)
 
 
     return(
@@ -20,7 +25,7 @@ const openModal=()=>{
            <div className="container-title-header">
               
            <i onClick={openModal} class='bx bx-book-alt text-white-tutorial'></i>
-           <div className={`modal  ${activeContainer?"modal-active":""}`}>
+           <div className={`modal  ${tutorial?"modal-active":""}`}>
                     {/*--MODAL--*/}
                     
                     <div  >

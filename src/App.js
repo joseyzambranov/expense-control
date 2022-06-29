@@ -29,12 +29,12 @@ return(
     <BrowserRouter>
     <Routes>
         <Route exact path='/'element={<Home />}></Route>
-        <Route exact path='/Table'element={<Table />}></Route>
-        <Route exact path='/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
-        <Route exact path='/Register'element={<Register />}></Route>
-        <Route exact path="/InputEdit/:inputId" element={<InputEdit />}></Route>
-        <Route exact path="/OutputEdit/:outputId" element={<OutputEdit />}></Route>
-        <Route exact path="/ForgotPassword" element={<ForgotPassword />}></Route>
+        <Route exact path='/table'element={<Table />}></Route>
+        <Route exact path='/login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
+        <Route exact path='/register'element={<Register />}></Route>
+        <Route exact path="/inputEdit/:inputId" element={<InputEdit />}></Route>
+        <Route exact path="/outputEdit/:outputId" element={<OutputEdit />}></Route>
+        <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
     </Routes>    
     
     </BrowserRouter>

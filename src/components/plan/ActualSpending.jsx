@@ -192,6 +192,7 @@ const handleClickOutput=(e)=>{
                             
                             <div >
                             <input type="number"
+                                    step="any"
                                    name="price"
                                    className="spending-plan-item white"
                                    onChange={handleChange}
@@ -239,6 +240,7 @@ const handleClickOutput=(e)=>{
                             <div >
                                 <input className="spending-plan-item white" 
                                        type="number"
+                                       step="any"
                                        onChange={handleChangeOutput}
                                        name="price"
                                         />

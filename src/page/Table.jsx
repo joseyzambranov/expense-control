@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 export default function Table (){
 
     const dispatch = useDispatch()
-
+    const translate = useSelector((state)=>state.user.translate) 
     const input = useSelector((state)=>state.inputActual.inputs)
     const output = useSelector((state)=>state.outputActual.outputs)
     const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
@@ -40,17 +40,17 @@ export default function Table (){
             {/*--TABLE INPUT--*/}
             <div>
                 <div>
-                    <p className="text-blue section-title-center-table ">INPUT</p>
+                    <p className="text-blue section-title-center-table ">{translate?"INPUT":"INGRESO"}</p>
                 </div>
                 <div>
                     <table>
                         <thead>
                             <tr>
-                                <th className="th-color-blue">ID</th>
-                                <th className="th-color-blue">DATE</th>
-                                <th className="th-color-blue">INPUT</th>
-                                <th className="th-color-blue">COUNT</th>
-                                <th className="th-color-blue">ACTION</th>
+                                <th className="th-color-blue">{translate?"ID":"ID"}</th>
+                                <th className="th-color-blue">{translate?"DATE":"FECHA"}</th>
+                                <th className="th-color-blue">{translate?"INPUT":"INGRESO"}</th>
+                                <th className="th-color-blue">{translate?"PRICE":"PRECIO"}</th>
+                                <th className="th-color-blue">{translate?"ACTION":"ACCIÒN"}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,7 +66,7 @@ export default function Table (){
                                             <div>
 
                                             <Link to={"/expense-control/InputEdit/" + i._id}>
-                                                <button><i className='bx bx-edit'></i></button>
+                                                <button><i className='bx bx-edit container-editAndDelete'></i></button>
                                              </Link> 
 
                                            <button onClick={()=>handleDelete(i._id)}>
@@ -93,17 +93,17 @@ export default function Table (){
             {/*--TABLE OUTPUT--*/}
             <div>
                 <div>
-                    <p className="text-red section-title-center-table ">OUTPUT</p>
+                    <p className="text-red section-title-center-table ">{translate?"OUTPUT":"GASTO"}</p>
                 </div>
                 <div>
                     <table>
                         <thead>
                             <tr>
-                                <th className="th-color-red">ID</th>
-                                <th className="th-color-red">DATE</th>
-                                <th className="th-color-red">OUTPUT</th>
-                                <th className="th-color-red">COUNT</th>
-                                <th className="th-color-red">ACTION</th>
+                            <th className="th-color-red">{translate?"ID":"ID"}</th>
+                                <th className="th-color-red">{translate?"DATE":"FECHA"}</th>
+                                <th className="th-color-red">{translate?"OUTPUT":"GASTO"}</th>
+                                <th className="th-color-red">{translate?"PRICE":"PRECIO"}</th>
+                                <th className="th-color-red">{translate?"ACTION":"ACCIÒN"}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,9 +119,8 @@ export default function Table (){
                                     <div>
 
                                     <Link to={"/expense-control/OutputEdit/" + i._id}>
-                                        <button><i className='bx bx-edit'></i></button>
+                                        <button><i className='bx bx-edit container-editAndDelete'></i></button>
                                     </Link> 
-
                                     <button onClick={()=>handleDeleteOutput(i._id)} >
                                         <i 
                                         className='bx bx-trash '></i>

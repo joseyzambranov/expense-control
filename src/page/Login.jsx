@@ -76,6 +76,7 @@ export default function Login(){
     const [loginTrue,setLoginTrue] = useState(false)
 
     const user = useSelector((state)=>state.user.currentUser)
+    const translate = useSelector((state)=>state.user.translate) 
 
     const handleClick=(e)=>{
 
@@ -106,14 +107,14 @@ export default function Login(){
 
                         <div className="modal-body">
                             
-                            <span  className="spending-plan-item blue" >Email</span>
+                            <span  className="spending-plan-item blue" >{translate?"Email":"Correo"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
                                         type="text"  
                                         onChange={(e)=>setEmail(e.target.value)} />
                             </div>
-                            <span  className="spending-plan-item blue" >Password</span>
+                            <span  className="spending-plan-item blue" >{translate?"Password":"contraseña"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
@@ -125,18 +126,18 @@ export default function Login(){
 
                          <ContainerButton  >
 
-                            <Button onClick={handleClick} className={isFetching?"loader":""}>Login</Button>
+                            <Button onClick={handleClick} className={isFetching?"loader":""}>{translate?"Login":"Inicio de sesión"}</Button>
                            
 
                         </ContainerButton>
                         
                         <MsjError>
-                                {error&&<Error>Somenthing went wrong...</Error>}{loginTrue||user&&<Link to="/expense-control"><RegisterTrue>is Correct!!!! click here to start</RegisterTrue></Link>}
+                                {error&&<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>}{loginTrue||user&&<Link to="/expense-control"><RegisterTrue>{translate?"is Correct!!!! click here to start":"¡¡¡¡Es correcto!!!! Haz click aquí para comenzar"}</RegisterTrue></Link>}
                         </MsjError>
                         <NotUser>
                         
                             <Link to="/expense-control/Register">
-                                 <span>Not a User</span>
+                                 <span>{translate?"Not a User":"No soy usuario"}</span>
                             </Link>
 
                           
@@ -144,7 +145,7 @@ export default function Login(){
                         </NotUser>
                         <NotUser>
                         <Link to="/expense-control/ForgotPassword">
-                             <span>Recovery Password</span>
+                             <span>{translate?"Recovery Password":"Recuperar contraseña"}</span>
                         </Link>
                         </NotUser>
                         

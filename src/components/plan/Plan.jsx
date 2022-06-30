@@ -10,7 +10,7 @@ import { addInputPlan, addInputplan, addInputTotal, addOutputplan, addOutputPlan
 
 export default function Plan({inputTotal,outputTotal}){
 
-
+    const translate = useSelector((state)=>state.user.translate) 
 
     const dispatch =useDispatch()
 
@@ -214,7 +214,7 @@ return(
     {/*SPENDING PLAN*/}
     <div className="spending-plan">
         <div className="spending-plan-header">
-            <p className="section-title-center">SPENDING PLAN <i className='bx bx-chevron-down'></i></p>
+            <p className="section-title-center">{translate?"SPENDING PLAN":"PLAN DE GASTOS"} <i className='bx bx-chevron-down'></i></p>
         </div>
         <div className="spending-plan-body">
             <InputList input={input} onChange={onChange} />
@@ -222,14 +222,14 @@ return(
         </div>
         <div className="spending-plan-body-total">
             <div className="spending-plan-item-total item-a red">
-                <p>Total Output</p>
+                <p>{translate?"Total Output":"Gastos Total"}</p>
                 <div className="spending-plan-item-total-num white">
                     <p className="text-black">{OutputTotal} $</p>
                 </div>
             </div>
 
             <div className="spending-plan-item-total blue">
-                <p>Total Input</p>
+                <p>{translate?"Total Input":"Ingreso Total"}</p>
                 <div className="spending-plan-item-total-num white ">
                     <p className="text-black">{inputTotalPlan} $</p>
                 </div>
@@ -257,7 +257,7 @@ return(
                         
                         <input onChange={handleChangeImput} 
                                className="spending-plan-item blue" 
-                               value={userInput} placeholder="New Input"  
+                               value={userInput} placeholder={translate?"New Input":"Nuevo Ingreso"}  
                                type="text" />
                         
                         <div>
@@ -300,7 +300,11 @@ return(
 
                     <div className="modal-body">
                         
-                            <input onChange={handleChangeOutPut} value={userOutPut} className="spending-plan-item red" type="text" placeholder="New Output" />
+                            <input onChange={handleChangeOutPut} 
+                                   value={userOutPut} 
+                                   className="spending-plan-item red" 
+                                   type="text" 
+                                   placeholder={translate?"New Output":"Nuevo Gasto"} />
                         
                         <div>
                             <input onChange={handleChangeOutAmount} value={userOutAmount} className="spending-plan-item white" type="number" placeholder={userOutAmount} />

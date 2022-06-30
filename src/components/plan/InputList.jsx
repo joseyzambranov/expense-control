@@ -1,8 +1,4 @@
-import { useState } from "react"
-
 export default function InputList({input,onChange}){
-
-
 
     return(<>
 {input.map(i=>{

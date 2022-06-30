@@ -12,6 +12,7 @@ import {useNavigate} from "react-router-dom"
 
 
 export default function ActualSpending({inputTotal,outputTotal}){
+    const translate = useSelector((state)=>state.user.translate) 
 
     const navigate=useNavigate()
 
@@ -145,7 +146,7 @@ const handleClickOutput=(e)=>{
     {/*--ACTUAL SPENDING--*/}
     <div className="actual-spending">
         <div className="spending-plan-header">
-            <p className="section-title-center">ACTUAL SPENDING <i className='bx bx-chevron-down'></i></p>
+            <p className="section-title-center">{translate?'ACTUAL SPENDING':'GASTO ACTUAL'} <i className='bx bx-chevron-down'></i></p>
         </div>
 
         <div className="spending-plan-body-total">
@@ -169,9 +170,9 @@ const handleClickOutput=(e)=>{
             
                 <button onClick={openModalInputBig} className="actual-spending-button blue text-white button_modal">
                     
-                    input 
+                    {translate?'input':'ingreso'} 
                     
-                    <i className='bx bx-plus'></i></button>
+                     <i className='bx bx-plus'></i></button>
 
                 <div className={`modal ${inputBigButtom?"modal-active":""}`}>
                     {/*--MODAL--*/}
@@ -185,7 +186,7 @@ const handleClickOutput=(e)=>{
                             <input className="spending-plan-item blue" 
                                    onChange={handleChange}
                                    name="input"
-                                   placeholder="New Input"
+                                   placeholder={translate?"New Input":'nuevo ingreso'}
                                    type="text"
                             />
                             
@@ -211,7 +212,7 @@ const handleClickOutput=(e)=>{
                             </div>
                         </div>*/}
                             <div className="modal-button-container">
-                                <button className="actual-spending-button blue text-white ">input <i className='bx bx-plus'></i></button>
+                                <button className="actual-spending-button blue text-white ">{translate?"input":"ingreso"} <i className='bx bx-plus'></i></button>
                             </div>
         
                     </form>
@@ -219,7 +220,7 @@ const handleClickOutput=(e)=>{
         
                 </div>
             
-                <button onClick={openModalOutputBig} className="actual-spending-button red text-white button_modal">output <i className='bx bx-minus'></i></button>
+                <button onClick={openModalOutputBig} className="actual-spending-button red text-white button_modal">{translate?'output':"gasto"} <i className='bx bx-minus'></i></button>
                 <div className={`modal ${outputBigButtom?"modal-active":""}`}>
                     {/*--MODAL--*/}
                     <form className="spending-plan" onSubmit={handleClickOutput}>
@@ -232,7 +233,7 @@ const handleClickOutput=(e)=>{
                         <input className="spending-plan-item red" 
                                    onChange={handleChangeOutput}
                                    name="output"
-                                   placeholder="New Output"
+                                   placeholder={translate?'New Output':'nuevo gasto'}
                                    type="text"
                             />
                             <div >
@@ -257,7 +258,7 @@ const handleClickOutput=(e)=>{
                             </div>
                         </div>*/}
                             <div className="modal-button-container">
-                                <button className="actual-spending-button red text-white ">output <i className='bx bx-minus'></i></button>
+                                <button className="actual-spending-button red text-white ">{translate?'output':'gasto'} <i className='bx bx-minus'></i></button>
                             </div>
         
                     </form>

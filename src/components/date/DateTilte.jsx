@@ -34,6 +34,8 @@ text-align: center;
 
 export default function DateTitle(){
 
+    const translate = useSelector((state)=>state.user.translate) 
+
     const dispatch = useDispatch()
 
     const input = useSelector((state)=>state.inputActual.inputs)
@@ -54,6 +56,20 @@ export default function DateTitle(){
         "OCTOBER",
         "NOVEMBER"
     ] 
+    const mes = [
+        "DICIEMBRE",
+        "ENERO",
+        "FEBRERO",
+        "MARZO",
+        "ABRIL",
+        "MAYO",
+        "JUNIO",
+        "JULIO",
+        "AGOSTO",
+        "SEPTIEMBRE",
+        "OCTUBRE",
+        "NOVIEMBRE"
+    ] 
 
     const re = /(?<year>\d{4})-(?<month>\d{2})/ 
 
@@ -61,7 +77,7 @@ export default function DateTitle(){
 
     const filter = date.map((i)=>re.exec(i.toISOString()))
 
-   const dateFilter = filter.map((i)=>`${month[Number(i.groups.month)]} ${i.groups.year}`)
+   const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)]:mes[Number(i.groups.month)]} ${i.groups.year}`)
 
    const resultFilter = dateFilter.filter((item,index)=>{
 

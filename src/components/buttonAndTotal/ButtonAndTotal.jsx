@@ -3,6 +3,8 @@ import "../../index.css"
 
 export default function ButtonAndTotal({inputTotal,outputTotal}){
 
+    const translate = useSelector((state)=>state.user.translate) 
+
     const inputPlanTotal = useSelector((state)=>state.expensePlan.inputPlanTotal)
     const outputPlanTotal = useSelector((state)=>state.expensePlan.outputPlanTotal)
 
@@ -18,7 +20,7 @@ return(
     </div>
 
     <div className="total">
-        <h2>SAVED: <span className={`${totalSave>=totalPlan?"text-blue":"text-red"}`}> {totalSave}</span> $</h2>
+        <h2>{translate?'SAVED':"AHORRO"}: <span className={`${totalSave>=totalPlan?"text-blue":"text-red"}`}> {totalSave}</span> $</h2>
     </div>
 
 

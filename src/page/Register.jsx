@@ -72,6 +72,8 @@ color:var(--blue-color);
 
 export default function Login(){
 
+    const translate = useSelector((state)=>state.user.translate) 
+
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
@@ -86,6 +88,7 @@ export default function Login(){
     
 
     const handleClick =(e)=>{
+
 
         e.preventDefault()
         
@@ -109,21 +112,21 @@ export default function Login(){
 
                     <div className="modal-body">
                         
-                        <span  className="spending-plan-item blue" >Username</span>
+                        <span  className="spending-plan-item blue" >{translate?"Username":"Usuario"}</span>
                         
                         <div>
                             <input  className="spending-plan-item white" 
                                     type="text"
                                     onChange={(e)=>setUsername(e.target.value)}  />
                         </div>
-                        <span  className="spending-plan-item blue" >Email</span>
+                        <span  className="spending-plan-item blue" >{translate?"Email":"Correo"}</span>
                         
                         <div>
                             <input  className="spending-plan-item white" 
                                     type="email"
                                     onChange={(e)=>setEmail(e.target.value)}  />
                         </div>
-                        <span  className="spending-plan-item blue" >Password</span>
+                        <span  className="spending-plan-item blue" >{translate?"Password":"contraseña"}</span>
                         
                         <div>
                             <input  className="spending-plan-item white" 
@@ -137,17 +140,17 @@ export default function Login(){
 
 
                     <ContainerButton>
-                        <Button onClick={handleClick} className={isFetching?"loader":""} >Register</Button>
+                        <Button onClick={handleClick} className={isFetching?"loader":""} >{translate?"Register":"Registrar"}</Button>
                     </ContainerButton>
 
                     <MsjError>
-                            {error?<Error>Somenthing went wrong...</Error>:geristerTrue&&<Link to="/expense-control/login"><RegisterTrue>Registration Successfully</RegisterTrue></Link>}
+                            {error?<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>:geristerTrue&&<Link to="/expense-control/login"><RegisterTrue>{translate?"Registration Successfully":"Registro Exitoso"}</RegisterTrue></Link>}
                     </MsjError>
 
                     <NotUser>
                         
                         <Link to="/expense-control/ForgotPassword">
-                             <span>Recovery Password</span>
+                             <span>{translate?"Recovery Password":"Recuperar Contraseña"}</span>
                         </Link>
 
                     </NotUser>

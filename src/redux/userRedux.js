@@ -7,6 +7,7 @@ const userSlice = createSlice({
         isFetching:false,
         error:false,
         tutorial:true,
+        translate:false,
     },
     reducers:{
         //LOGIN
@@ -43,6 +44,12 @@ const userSlice = createSlice({
         },
         tutorialTrue:(state)=>{
             state.tutorial=true;
+        },//TRANSLATE
+        translateFalse:(state)=>{
+            state.translate=false;
+        },
+        translateTrue:(state)=>{
+            state.translate=true;
         },
 
     }
@@ -55,6 +62,10 @@ export const {
               logout,
               registerStart,
               registerSuccess,
-              registerFailure,tutorialFalse,tutorialTrue  } =userSlice.actions;
+              registerFailure,
+              tutorialFalse,
+              tutorialTrue,
+              translateFalse,
+              translateTrue  } =userSlice.actions;
               
 export default userSlice.reducer;

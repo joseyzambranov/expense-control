@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { useState } from "react"
 import axios from "axios"
 import swal from "sweetalert2"
+import { useSelector } from "react-redux"
 
 const Container = styled.div`
     position: relative;
@@ -63,6 +64,8 @@ color:var(--blue-color);
 
 export default function ForgotPassword (){
 
+    const translate = useSelector((state)=>state.user.translate) 
+
     const [email,setEmail] = useState()
     const [isLoading,setIsLoading] = useState(false)
 
@@ -77,14 +80,14 @@ export default function ForgotPassword (){
         swal.fire({
             showConfirmButton:true,
             icon:"succes",
-            text:"Check your email, a link has been sent to reset your password"
+            text:`${translate?"Check your email, a link has been sent to reset your password":"Revise su correo electrónico, se ha enviado un enlace para restablecer su contraseña"}`
         })
        }).catch((err)=>{
         setIsLoading(false)
         swal.fire({
             showConfirmButton:true,
             icon:"error",
-            text:"An error occurred, check email and try again later"
+            text:`${translate?"An error occurred, check email and try again later":"Ocurrió un error, revise el correo electrónico y vuelva a intentarlo más tarde"}`
         })
 
        })
@@ -105,12 +108,12 @@ export default function ForgotPassword (){
 
                     <div className="modal-body">
                         
-                        <span  className="spending-plan-item blue" >Email</span>
+                        <span  className="spending-plan-item blue" >{translate?"Email":"Correo"}</span>
                         
                         <div>
                             <input  className="spending-plan-item white" 
                                     type="email"
-                                    placeholder="enter your email"
+                                    placeholder={translate?"enter your email":"ingresa tu correo"}
                                     onChange={(e)=>setEmail(e.target.value)}  />
                         </div>
                     
@@ -118,7 +121,7 @@ export default function ForgotPassword (){
 
 
                     <ContainerButton>
-                        <Button onClick={handleClick} className={isLoading?"loader":""}>Recover Password</Button>
+                        <Button onClick={handleClick} className={isLoading?"loader":""}>{translate?"Recover Password":"Recuperar contraseña"}</Button>
                     </ContainerButton>
 
 

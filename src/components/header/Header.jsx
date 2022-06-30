@@ -8,6 +8,8 @@ import { loguotInputTotal } from "../../redux/inputTotalRedux"
 
 export default function Header(){
 
+    const translate = useSelector((state)=>state.user.translate) 
+
     const LoginLogout = styled.div`
     color: white;
     padding: 0 1rem 0 1rem;
@@ -30,7 +32,7 @@ export default function Header(){
         <div className="container-header" >
            <div className="container-title-header">
               
-               <p>Hello {user?user.others.username: "Saver"}</p>
+               <p>{translate?'Hello':'Hola'} {user?user.others.username: translate?"Saver":"Ahorrador"}</p>
                
                
                

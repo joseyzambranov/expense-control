@@ -126,13 +126,6 @@ p{
     
 }
 
-.text-white-tutorial{
-    color: var(--gray-color);
-    cursor: pointer;
-    padding: 10px;
-}
-
-
 .spending-plan-tutorial-img{
     
     background: url("../src/tutorial.svg") no-repeat center;
@@ -145,8 +138,6 @@ p{
     justify-self:center;
 }
 
-
-
 .tutorial{
     content: "";
     display: inline-block;
@@ -158,6 +149,30 @@ p{
     
 
 }
+.text-white-tutorial{
+    color: var(--gray-color);
+    cursor: pointer;
+    padding: 10px;
+}
+
+/*-----------------TRANSLATE--------------------*/
+
+.container-header-translate{
+    display: flex;
+    background-color: var(--black-color);
+    align-items: center;
+    margin: 90px 5px 5px 5px;
+    position: absolute;
+    border-radius: 100%;
+    z-index: 100;
+    padding: 7px;
+}
+.text-white-translate{
+    color: var(--gray-color);
+    cursor: pointer;
+}
+
+
 
 /*---------------------HEADER--------------------------*/
 
@@ -474,7 +489,10 @@ th {
   tr:nth-child(even) td {
     background-color: #f8f6ff;
   }
-
+.container-editAndDelete{
+    margin-right: 20px;
+}
+  
 /*=============== BREAKPOINTS ===============*/
 
 @media screen and (max-width: 1180px){

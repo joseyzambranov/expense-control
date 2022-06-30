@@ -6,6 +6,7 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import Plan from "../components/plan/Plan"
 import Title from "../components/title/Title"
+import Translate from "../components/translate/Translate"
 import Tutorial from "../components/tutorial/Tutorial"
 
 import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
@@ -57,7 +58,8 @@ export default function Home(){
 
     return(
         <>
-    <Tutorial/>         
+    <Tutorial/>
+    <Translate />   
     <Header />
     <Title />
     <DateTitle />

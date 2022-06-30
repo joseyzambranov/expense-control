@@ -61,7 +61,9 @@ font-size:var(--smaller-font-size);
 
 export default function InputEdit(){
 
-    const user =useSelector((state)=>state.user)
+const translate = useSelector((state)=>state.user.translate) 
+
+const user =useSelector((state)=>state.user)
 const dispatch =useDispatch()
 const [inputs,setInputs]=useState({})
 const location = useLocation()
@@ -105,7 +107,7 @@ console.log(inputs)
 
                         <div className="modal-body">
                             
-                            <span  className="spending-plan-item blue" >Input</span>
+                            <span  className="spending-plan-item blue" >{translate?"Input":"Ingreso"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
@@ -115,7 +117,7 @@ console.log(inputs)
                                         placeholder={input.input}
                                         onChange={handleChange}/>
                             </div>
-                            <span  className="spending-plan-item blue" >Price</span>
+                            <span  className="spending-plan-item blue" >{translate?"Price":"Precio"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
@@ -130,7 +132,7 @@ console.log(inputs)
 
                          <ContainerButton  >
 
-                            <Button  onClick={handleClick}>Edit</Button>
+                            <Button  onClick={handleClick}>{translate?"Edit":"Editar"}</Button>
                            
 
                         </ContainerButton>
@@ -139,7 +141,7 @@ console.log(inputs)
                         <NotUser>
                         
                             <Link to="/expense-control/Table">
-                                 <span>Back</span>
+                                 <span>{translate?"Back":"Volver"}</span>
                             </Link>
 
                         </NotUser>

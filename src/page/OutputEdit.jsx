@@ -61,7 +61,8 @@ font-size:var(--smaller-font-size);
 
 export default function OutputEdit(){
 
-    const user =useSelector((state)=>state.user)
+const translate = useSelector((state)=>state.user.translate) 
+const user =useSelector((state)=>state.user)
 const dispatch =useDispatch()
 const [outputs,setOutputs]=useState({})
 const location = useLocation()
@@ -105,7 +106,7 @@ try{
 
                         <div className="modal-body">
                             
-                            <span  className="spending-plan-item red" >Output</span>
+                            <span  className="spending-plan-item red" >{translate?"Output":"Gasto"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
@@ -115,7 +116,7 @@ try{
                                         placeholder={output.output}
                                         onChange={handleChange}/>
                             </div>
-                            <span  className="spending-plan-item red" >Price</span>
+                            <span  className="spending-plan-item red" >{translate?"Price":"Precio"}</span>
                             
                             <div>
                                 <input  className="spending-plan-item white" 
@@ -130,7 +131,7 @@ try{
 
                          <ContainerButton  >
 
-                            <Button  onClick={handleClick}>Edit</Button>
+                            <Button  onClick={handleClick}>{translate?"Edit":"Editar"}</Button>
                            
 
                         </ContainerButton>
@@ -139,7 +140,7 @@ try{
                         <NotUser>
                         
                             <Link to="/expense-control/Table">
-                                 <span>Back</span>
+                                 <span>{translate?"Back":"Volver"}</span>
                             </Link>
 
                         </NotUser>

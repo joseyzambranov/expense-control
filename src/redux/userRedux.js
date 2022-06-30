@@ -7,7 +7,7 @@ const userSlice = createSlice({
         isFetching:false,
         error:false,
         tutorial:true,
-        translate:false,
+        translate:true,
     },
     reducers:{
         //LOGIN

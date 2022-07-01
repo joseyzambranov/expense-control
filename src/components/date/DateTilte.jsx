@@ -3,6 +3,7 @@ import styled from "styled-components"
 import {useDispatch, useSelector} from "react-redux"
 import { useEffect, useState } from "react";
 import { inputFilterActual } from "../../redux/inputActualRedux";
+import { getTwoFirstInputActual } from "../../redux/apiCall";
 
 const Select = styled.select`
 
@@ -86,8 +87,9 @@ export default function DateTitle(){
     })
 
     const handleChange =(e)=>{
-       
+        e.preventDefault()
         dispatch(inputFilterActual(e.target.value))
+        
     }
    
 

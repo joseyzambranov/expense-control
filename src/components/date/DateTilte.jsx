@@ -108,23 +108,11 @@ export default function DateTitle(){
 
     const dateActual = `${month[Number(actualmont.groups.month)]} ${new Date().getFullYear()}`
 
-    const [inputAcutalChange,setInputActualChange] = useState(dateActual)
-
-
-    useEffect(()=>{
-
-        dispatch(inputFilterActual(inputAcutalChange))
-
-    })
-
-    console.log(inputAcutalChange)
 
     return(
         <section   className="section-title-center section">
 
-           {/*<Input type="month" onClick={(e)=>dispatch(inputFilterActual(e.target.value)) setInputActualChange(e.target.value)} />*/}
-
-           <Select onChange={(e)=>/*dispatch(inputFilterActual(e.target.value))*/setInputActualChange(e.target.value)} >
+           <Select onChange={(e)=>dispatch(inputFilterActual(e.target.value))}>
                 
            
             <Option value={dateActual} >{translate?"FILTER DATE":"FILTRAR FECHA"}</Option>

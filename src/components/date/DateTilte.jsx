@@ -102,7 +102,7 @@ export default function DateTitle(){
     console.log(inputAcutalChange)
 
     return(
-        <section   className="section-title-center section">
+        <form   className="section-title-center section">
 
             <Select onClick={(e)=>setInputActualChange(e.target.value)} >
 
@@ -115,6 +115,6 @@ export default function DateTitle(){
 
             </Select>
 
-        </section>
+        </form>
     )
 }

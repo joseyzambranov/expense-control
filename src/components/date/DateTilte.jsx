@@ -85,6 +85,10 @@ export default function DateTitle(){
    
     })
 
+    const handleChange =(e)=>{
+       
+        dispatch(inputFilterActual(e.target.value))
+    }
    
 
     const actualmont = re.exec(new Date().toISOString())
@@ -95,7 +99,7 @@ export default function DateTitle(){
     return(
         <section  className="section-title-center section">
 
-            <Select onClick={e=>dispatch(inputFilterActual(e.target.value))}>
+            <Select onClick={handleChange}>
 
             <Option value={dateActual} >{translate?"FILTER DATE":"FILTRAR FECHA"}</Option>
 

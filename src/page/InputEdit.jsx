@@ -98,7 +98,6 @@ console.log(inputs)
 
     return(
         <>
-        <Header/>
         <Title/>
         <Container >
                     <Form >

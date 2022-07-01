@@ -97,7 +97,6 @@ try{
 
     return(
         <>
-        <Header/>
         <Title/>
         <Container >
                     <Form >

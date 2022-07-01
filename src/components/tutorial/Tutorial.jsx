@@ -16,9 +16,6 @@ const openModal=()=>{
     dispacth(tutorialTrue())
 }
 
-console.log(tutorial)
-
-
     return(
 
         <div className="container-header-tutorial" >

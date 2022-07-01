@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
 import ForgotPassword from "./page/ForgotPassword"
+import PageNotFound from './page/PageNotFound';
+
 function App() {
 
     const dispatch = useDispatch()
@@ -17,9 +19,10 @@ return(
     
     <BrowserRouter>
     <Routes>
+        <Route exact path="*" element={<PageNotFound/>} />
         <Route exact path='/expense-control/'element={<Home />}></Route>
-        <Route exact path='/expense-control/Table'element={<Table />}></Route>
         <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
+        <Route exact path='/expense-control/Table'element={<Table />}></Route>
         <Route exact path='/expense-control/Register'element={<Register />}></Route>
         <Route exact path="/expense-control/InputEdit/:inputId" element={<InputEdit />}></Route>
         <Route exact path="/expense-control/OutputEdit/:outputId" element={<OutputEdit />}></Route>

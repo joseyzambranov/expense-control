@@ -156,11 +156,15 @@ const handleClickOutput=(e)=>{
         <div>
 
             </div>
-            <Link to="/expense-control/table">
+
+            <Link to="/expense-control/Table">
             <div className="spending-plan-item-list">
                 <a><i className='bx bx-spreadsheet'></i></a>
             </div>
             </Link>
+
+         
+    
 
             <OutputActualTotal outputTotal={outputTotal}/>
             <InputActualTotal inputTotal={inputTotal}/>

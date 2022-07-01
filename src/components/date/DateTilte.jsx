@@ -71,22 +71,6 @@ export default function DateTitle(){
         "NOVIEMBRE"
     ] 
 
-    const month1 = [
-        
-        "JANUARY",
-        "FEBRUARY",
-        "MARCH",
-        "APRIL",
-        "MAY",
-        "JUNE",
-        "JULY",
-        "AUGUST",
-        "SEPTEMBER",
-        "OCTOBER",
-        "NOVEMBER",
-        "DECEMBER"
-    ] 
-
     const re = /(?<year>\d{4})-(?<month>\d{2})/ 
 
     const date = input.map((i)=>new Date(i.createdAt))
@@ -101,11 +85,11 @@ export default function DateTitle(){
    
     })
 
-    const dateActual = `${month1[new Date().getUTCMonth()]} ${new Date().getFullYear()}`
+   
 
+    const actualmont = re.exec(new Date().toISOString())
 
- 
-        
+    const dateActual = `${month[Number(actualmont.groups.month)]} ${new Date().getFullYear()}`
 
 
     return(

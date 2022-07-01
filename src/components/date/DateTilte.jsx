@@ -90,7 +90,7 @@ export default function DateTitle(){
 
             <Select name="date" id="date-select" onClick={e=>dispatch(inputFilterActual(e.target.value))}>
 
-            <Option value={inputFilter?inputFilter:"SELECT A DATE"} >{inputFilter?inputFilter:"SELECT A DATE"}</Option>
+            <Option value={inputFilter} >{inputFilter}</Option>
 
             {resultFilter.map((i)=>(
 

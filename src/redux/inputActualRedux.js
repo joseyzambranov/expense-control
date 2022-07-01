@@ -1,11 +1,27 @@
 import {createSlice} from "@reduxjs/toolkit"
 
+
+const month = [
+    "DECEMBER",
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER"
+]
+
 export const inputActualSlice = createSlice({
     name:"inputActual",
     initialState:{
     inputs:[],
     twoFirstInputs:[],
-    inputFilter:"JUNE 2022",
+    inputFilter:`${month[new Date().getUTCMonth()]} ${new Date().getFullYear()}`,
     total:0,
     isFetching:false,
     error:false

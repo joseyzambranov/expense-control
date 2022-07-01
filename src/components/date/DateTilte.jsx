@@ -39,8 +39,6 @@ export default function DateTitle(){
     const dispatch = useDispatch()
 
     const input = useSelector((state)=>state.inputActual.inputs)
-    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
-
 
     const month = [
         "DECEMBER",
@@ -71,6 +69,38 @@ export default function DateTitle(){
         "NOVIEMBRE"
     ] 
 
+    const month1 = [
+        
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
+        "DECEMBER"
+    ] 
+
+    const mes1 = [
+        
+        "ENERO",
+        "FEBRERO",
+        "MARZO",
+        "ABRIL",
+        "MAYO",
+        "JUNIO",
+        "JULIO",
+        "AGOSTO",
+        "SEPTIEMBRE",
+        "OCTUBRE",
+        "NOVIEMBRE",
+        "DICIEMBRE"
+    ] 
+
     const re = /(?<year>\d{4})-(?<month>\d{2})/ 
 
     const date = input.map((i)=>new Date(i.createdAt))
@@ -85,12 +115,14 @@ export default function DateTitle(){
    
     })
 
+    const dateActual = `${translate?month1[new Date().getUTCMonth()]:mes1[new Date().getUTCMonth()]} ${new Date().getFullYear()}`
+
     return(
         <section  className="section-title-center section">
 
             <Select name="date" id="date-select" onClick={e=>dispatch(inputFilterActual(e.target.value))}>
 
-            <Option value={inputFilter} >{inputFilter}</Option>
+            <Option value={dateActual} >{dateActual}</Option>
 
             {resultFilter.map((i)=>(
 

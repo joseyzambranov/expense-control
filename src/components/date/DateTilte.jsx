@@ -95,13 +95,13 @@ export default function DateTitle(){
     return(
         <section  className="section-title-center section">
 
-            <Select name="date" id="date-select" onClick={e=>dispatch(inputFilterActual(e.target.value))}>
+            <Select onClick={e=>dispatch(inputFilterActual(e.target.value))}>
 
             <Option value={dateActual} >{translate?"FILTER DATE":"FILTRAR FECHA"}</Option>
 
             {resultFilter.map((i)=>(
 
-                <Option value={i} >{i}</Option>
+            <Option value={i} >{i}</Option>
             ))}
 
             </Select>

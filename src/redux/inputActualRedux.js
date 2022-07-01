@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 
 
 const month = [
-    "DECEMBER",
+    
     "JANUARY",
     "FEBRUARY",
     "MARCH",
@@ -13,7 +13,8 @@ const month = [
     "AUGUST",
     "SEPTEMBER",
     "OCTOBER",
-    "NOVEMBER"
+    "NOVEMBER",
+    "DECEMBER"
 ]
 
 export const inputActualSlice = createSlice({

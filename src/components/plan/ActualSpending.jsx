@@ -146,7 +146,7 @@ const handleClickOutput=(e)=>{
     {/*--ACTUAL SPENDING--*/}
     <div className="actual-spending">
         <div className="spending-plan-header">
-            <p className="section-title-center">{translate?'ACTUAL SPENDING':'GASTO ACTUAL'} <i className='bx bx-chevron-down'></i></p>
+            <p className="section-title-center">{translate?'ACTUAL MONTHLY EXPENDITURE':'GASTO MENSUAL ACTUAL'} </p>
         </div>
 
         <div className="spending-plan-body-total">

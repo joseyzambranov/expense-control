@@ -97,7 +97,7 @@ export default function DateTitle(){
 
             <Select name="date" id="date-select" onClick={e=>dispatch(inputFilterActual(e.target.value))}>
 
-            <Option value={dateActual} >{translate?"FILTER BY DATE":"FILTRA POR FECHA"}</Option>
+            <Option value={dateActual} >{translate?"FILTER DATE":"FILTRAR FECHA"}</Option>
 
             {resultFilter.map((i)=>(
 

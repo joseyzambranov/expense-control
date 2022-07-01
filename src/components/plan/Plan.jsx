@@ -214,7 +214,7 @@ return(
     {/*SPENDING PLAN*/}
     <div className="spending-plan">
         <div className="spending-plan-header">
-            <p className="section-title-center">{translate?"SPENDING PLAN":"PLAN DE GASTOS"} <i className='bx bx-chevron-down'></i></p>
+            <p className="section-title-center">{translate?"MONTHLY SPENDING PLAN":"PLAN DE GASTO MENSUAL"}</p>
         </div>
         <div className="spending-plan-body">
             <InputList input={input} onChange={onChange} />

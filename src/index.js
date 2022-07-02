@@ -7,8 +7,7 @@ import { Provider } from 'react-redux';
 import {persistor, store} from "./redux/store"
 import { PersistGate } from 'redux-persist/integration/react';
 import { createRoot } from "react-dom/client";
-
-
+import { HashRouter } from "react-router-dom";
 
 //------------old script--------------------------------------
 
@@ -24,14 +23,17 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 //ReactDOM.render(
 root.render(
+  
   <Provider store={store}>
+   
     <PersistGate loading={null} persistor={persistor}>
-
-      <App />
+    
+    <App />
 
     </PersistGate>
 
-  </Provider>,
+  </Provider>
+ ,
   //document.getElementById("root")
 
 );

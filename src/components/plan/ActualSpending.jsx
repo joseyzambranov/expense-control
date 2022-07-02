@@ -9,6 +9,7 @@ import OutputActualTotal from "./OutputActualTotal"
 import { addInputActual, addOutputActual, getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../../redux/apiCall"
 import ButtonAndTotal from "../buttonAndTotal/ButtonAndTotal"
 import {useNavigate} from "react-router-dom"
+import {HashRouter } from 'react-router-dom';
 
 
 export default function ActualSpending({inputTotal,outputTotal}){
@@ -157,13 +158,13 @@ const handleClickOutput=(e)=>{
 
             </div>
 
+           
+
             <Link to="/expense-control/Table">
             <div className="spending-plan-item-list">
                 <a><i className='bx bx-spreadsheet'></i></a>
             </div>
-            </Link>
-
-         
+            </Link>   
     
 
             <OutputActualTotal outputTotal={outputTotal}/>

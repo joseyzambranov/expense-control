@@ -8,28 +8,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
 import ForgotPassword from "./page/ForgotPassword"
-import PageNotFound from './page/PageNotFound';
-
+import { HashRouter,Router } from "react-router-dom";
 function App() {
 
     const dispatch = useDispatch()
     const user = useSelector((state)=>state.user.currentUser)
 
 return(
+    <>
+ {/*<HashRouter>
+  
+ <Router >
+    <Route exact path='/expense-control/Table'component={Table} />
+ </Router>   
+  
+  </HashRouter>*/}
+
+  <BrowserRouter basename={process.env.REACT_APP_FOR_PATH}>
     
-    <BrowserRouter>
-    <Routes>
-        <Route exact path="*" element={<PageNotFound/>} />
-        <Route exact path='/expense-control/'element={<Home />}></Route>
-        <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
-        <Route exact path='/expense-control/Table'element={<Table />}></Route>
-        <Route exact path='/expense-control/Register'element={<Register />}></Route>
-        <Route exact path="/expense-control/InputEdit/:inputId" element={<InputEdit />}></Route>
-        <Route exact path="/expense-control/OutputEdit/:outputId" element={<OutputEdit />}></Route>
-        <Route exact path="/expense-control/ForgotPassword" element={<ForgotPassword />}></Route>
-    </Routes>    
+  <Routes>
+      <Route exact path='/expense-control/'element={<Home />}></Route>
+      <Route exact path='/expense-control/Table'element={<Table />}></Route>
+      <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
+      <Route exact path='/expense-control/Register'element={<Register />}></Route>
+      <Route exact path="/expense-control/InputEdit/:inputId" element={<InputEdit />}></Route>
+      <Route exact path="/expense-control/OutputEdit/:outputId" element={<OutputEdit />}></Route>
+      <Route exact path="/expense-control/ForgotPassword" element={<ForgotPassword />}></Route>
+  </Routes>    
+  
+  </BrowserRouter>
+    </>
     
-    </BrowserRouter>
 
 )
   

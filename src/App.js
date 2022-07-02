@@ -16,21 +16,13 @@ function App() {
 
 return(
     <>
- {/*<HashRouter>
-  
- <Router >
-    <Route exact path='/expense-control/Table'component={Table} />
- </Router>   
-  
-  </HashRouter>*/}
-
-  <BrowserRouter basename={process.env.REACT_APP_FOR_PATH}>
     
+  <BrowserRouter>
   <Routes>
       <Route exact path='/expense-control/'element={<Home />}></Route>
-      <Route exact path='/expense-control/Table'element={<Table />}></Route>
       <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
       <Route exact path='/expense-control/Register'element={<Register />}></Route>
+      <Route exact path='/expense-control/Table'element={<Table />}></Route>
       <Route exact path="/expense-control/InputEdit/:inputId" element={<InputEdit />}></Route>
       <Route exact path="/expense-control/OutputEdit/:outputId" element={<OutputEdit />}></Route>
       <Route exact path="/expense-control/ForgotPassword" element={<ForgotPassword />}></Route>

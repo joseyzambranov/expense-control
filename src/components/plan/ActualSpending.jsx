@@ -160,11 +160,18 @@ const handleClickOutput=(e)=>{
 
            
 
-            <Link to="/expense-control/Table">
+
+
+
+            <Link to="Table">
             <div className="spending-plan-item-list">
                 <a><i className='bx bx-spreadsheet'></i></a>
             </div>
-            </Link>   
+            </Link>
+
+
+         
+         
     
 
             <OutputActualTotal outputTotal={outputTotal}/>

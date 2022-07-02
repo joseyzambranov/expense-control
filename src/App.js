@@ -1,34 +1,31 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './page/Home';
 import Login from './page/Login';
 import Table from './page/Table';
 import Register from "./page/Register";
-import { useDispatch, useSelector } from 'react-redux';
 import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
 import ForgotPassword from "./page/ForgotPassword"
-import { HashRouter,Router } from "react-router-dom";
+import { HashRouter,Route, Routes } from "react-router-dom";
 function App() {
-
-    const dispatch = useDispatch()
-    const user = useSelector((state)=>state.user.currentUser)
 
 return(
     <>
     
-  <BrowserRouter>
-  <Routes>
-      <Route exact path='/expense-control/'element={<Home />}></Route>
-      <Route exact path='/expense-control/Login'element={/*user?<Navigate to="/" />:*/<Login />}></Route>
-      <Route exact path='/expense-control/Register'element={<Register />}></Route>
-      <Route exact path='/expense-control/Table'element={<Table />}></Route>
-      <Route exact path="/expense-control/InputEdit/:inputId" element={<InputEdit />}></Route>
-      <Route exact path="/expense-control/OutputEdit/:outputId" element={<OutputEdit />}></Route>
-      <Route exact path="/expense-control/ForgotPassword" element={<ForgotPassword />}></Route>
-  </Routes>    
-  
-  </BrowserRouter>
+<HashRouter basename='/'>
+
+        <Routes>
+            <Route exact path='/'element={<Home />}></Route>
+            <Route exact path='/Login'element={<Login />}></Route>
+            <Route exact path='/Register'element={<Register />}></Route>
+            <Route exact path='/Table'element={<Table />}></Route>
+            <Route exact path="/InputEdit/:inputId" element={<InputEdit />}></Route>
+            <Route exact path="/OutputEdit/:outputId" element={<OutputEdit />}></Route>
+            <Route exact path="/ForgotPassword" element={<ForgotPassword />}></Route>
+        </Routes>    
+
+</HashRouter>
+      
     </>
     
 

@@ -11,7 +11,7 @@ export default function Title(){
         
         <section className="section-title-center section section-title">
             
-                <h1><Link to="/expense-control" >{translate?"EXPENCE CONTROL":"CONTROL DE GASTO"}</Link></h1>
+                <h1><Link to="/" >{translate?"EXPENCE CONTROL":"CONTROL DE GASTO"}</Link></h1>
             
         </section>
         

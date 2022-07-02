@@ -64,8 +64,9 @@ export default function Table (){
                                         <td>{i.price}</td>
                                         <td>
                                             <div>
+    
 
-                                            <Link to={"/expense-control/InputEdit/" + i._id}>
+                                            <Link to={"/InputEdit/"+i._id}>
                                                 <button><i className='bx bx-edit container-editAndDelete'></i></button>
                                              </Link> 
 
@@ -118,7 +119,7 @@ export default function Table (){
                                     
                                     <div>
 
-                                    <Link to={"/expense-control/OutputEdit/" + i._id}>
+                                    <Link to={"/OutputEdit/"+ i._id}>
                                         <button><i className='bx bx-edit container-editAndDelete'></i></button>
                                     </Link> 
                                     <button onClick={()=>handleDeleteOutput(i._id)} >

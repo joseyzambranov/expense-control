@@ -132,11 +132,11 @@ export default function Login(){
                         </ContainerButton>
                         
                         <MsjError>
-                                {error&&<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>}{loginTrue||user&&<Link to="/expense-control"><RegisterTrue>{translate?"is Correct!!!! click here to start":"¡¡¡¡Es correcto!!!! Haz click aquí para comenzar"}</RegisterTrue></Link>}
+                                {error&&<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>}{loginTrue||user&&<Link to="/"><RegisterTrue>{translate?"is Correct!!!! click here to start":"¡¡¡¡Es correcto!!!! Haz click aquí para comenzar"}</RegisterTrue></Link>}
                         </MsjError>
                         <NotUser>
                         
-                            <Link to="/expense-control/Register">
+                            <Link to="Register">
                                  <span>{translate?"Not a User":"No soy usuario"}</span>
                             </Link>
 
@@ -144,7 +144,7 @@ export default function Login(){
 
                         </NotUser>
                         <NotUser>
-                        <Link to="/expense-control/ForgotPassword">
+                        <Link to="ForgotPassword">
                              <span>{translate?"Recovery Password":"Recuperar contraseña"}</span>
                         </Link>
                         </NotUser>

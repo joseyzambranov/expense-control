@@ -66,7 +66,7 @@ const user =useSelector((state)=>state.user)
 const dispatch =useDispatch()
 const [outputs,setOutputs]=useState({})
 const location = useLocation()
-const outputId = location.pathname.split("/")[3]
+const outputId = location.pathname.split("/")[2]
 
 let navigate = useNavigate();
 
@@ -90,7 +90,7 @@ try{
     getOutputActual(dispatch,user.currentUser.others._id)
 }catch{}
    
-    return navigate("/expense-control/Table")
+    return navigate("/Table")
 
 }
 
@@ -139,7 +139,7 @@ try{
                      
                         <NotUser>
                         
-                            <Link to="/expense-control/Table">
+                            <Link to="/Table">
                                  <span>{translate?"Back":"Volver"}</span>
                             </Link>
 

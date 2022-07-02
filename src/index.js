@@ -9,19 +9,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 
-//------------old script--------------------------------------
-
-/*const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  );*/
-
 //------------------new react 18-----------------------------------
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
-//ReactDOM.render(
+
 root.render(
   
   <Provider store={store}>
@@ -34,7 +25,7 @@ root.render(
 
   </Provider>
  ,
-  //document.getElementById("root")
+
 
 );
 

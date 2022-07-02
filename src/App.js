@@ -7,7 +7,17 @@ import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
 import ForgotPassword from "./page/ForgotPassword"
 import { HashRouter,Route, Routes } from "react-router-dom";
+
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
+const TRACKING_ID = "G-LXWKJ058HE"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+
 function App() {
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+      }, []);
 
 return(
     <>

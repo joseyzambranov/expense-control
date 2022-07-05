@@ -67,7 +67,7 @@ export const outputActualSlice = createSlice({
         },
          //DELETE OUTPUT
          deleteOutputActualStart:(state)=>{
-            state.isFetching1=false;
+            state.isFetching1=true;
             state.error1=true;
         },
         deleteOutputActualSuccess:(state,action)=>{

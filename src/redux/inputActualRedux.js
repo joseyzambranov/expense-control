@@ -87,7 +87,7 @@ export const inputActualSlice = createSlice({
         },
         //DELETE INPUT
         deleteInputActualStart:(state)=>{
-            state.isFetching=false;
+            state.isFetching=true;
             state.error=true;
         },
         deleteInputActualSuccess:(state,action)=>{

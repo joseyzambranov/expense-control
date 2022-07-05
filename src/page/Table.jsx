@@ -15,6 +15,9 @@ export default function Table (){
     const output = useSelector((state)=>state.outputActual.outputs)
     const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
 
+    const {isFetching} = useSelector((state)=>state.inputActual)
+    const {isFetching1} = useSelector((state)=>state.outputActual)
+
     const handleDelete =(id)=>{
         deleteInputActual(id,dispatch)
     }
@@ -63,7 +66,7 @@ export default function Table (){
                                         <td>{i.input}</td>
                                         <td>{i.price}</td>
                                         <td>
-                                            <div>
+                                            <div className={isFetching?"loader1":""}>
     
 
                                             <Link to={"/InputEdit/"+i._id}>
@@ -72,7 +75,7 @@ export default function Table (){
 
                                            <button onClick={()=>handleDelete(i._id)}>
                                                 <i  
-                                                   className='bx bx-trash '></i>
+                                                   className={`bx bx-trash`}></i>
                                             </button>
                                             
                                             </div> 
@@ -117,14 +120,14 @@ export default function Table (){
                                 <td>{i.price}</td>
                                 <td>
                                     
-                                    <div>
+                                    <div  className={isFetching1?"loader1":""}>
 
                                     <Link to={"/OutputEdit/"+ i._id}>
                                         <button><i className='bx bx-edit container-editAndDelete'></i></button>
                                     </Link> 
                                     <button onClick={()=>handleDeleteOutput(i._id)} >
                                         <i 
-                                        className='bx bx-trash '></i>
+                                        className={`bx bx-trash`}></i>
                                     </button>
 
                                     </div> 

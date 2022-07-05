@@ -33,10 +33,6 @@ export default function ActualSpending({inputTotal,outputTotal}){
   
     /*-----------------GET TWO FIRST -----------------------*/
 
-   // const twoFirstInput= useSelector((state)=>state.inputActual.twoFirstInputs)
-
-    //const twoFirstOutput=useSelector((state)=>state.outputActual.twoFirstOutputs)
-
     const dateFilter1 =new Date(`01 ${inputFilter}`).toISOString()
     const dateFilter2 =new Date(`31 ${inputFilter}`).toISOString()
 
@@ -46,16 +42,6 @@ export default function ActualSpending({inputTotal,outputTotal}){
 
     const twoFirstOutputFilter = outputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2).reverse()
     twoFirstOutputFilter.length= 2
-
-     /*-----------------GET INPUT AND OUTPUT TOTAL -----------------------*/
-
-   /* const inputAfilter = inputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
-
-    const inputAtotal = inputAfilter.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
-
-    const outputAfilter = outputA.filter(n=>n.createdAt>dateFilter1&&n.createdAt<dateFilter2)
-
-    const outputAtotal = outputAfilter.map(i=>i.price).reduce((p,c)=>p+c,0)/*
 
     /*----------------------------ACTIVE AND DESACTIVE MODAL--------------------------------- */
     
@@ -97,24 +83,19 @@ export default function ActualSpending({inputTotal,outputTotal}){
                 navigate("/login")
 
             }else{
-
-                try{
                     const inpu =  {...addInput,userId:user.currentUser.others._id}
                     addInputActual(dispatch,inpu)
-                    getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-                    getInputActual(dispatch,user.currentUser.others._id)
-                    setInputBigButtom(false) 
-                    
-              }catch{}
-                    getInputActual(dispatch,user.currentUser.others._id)
-                    getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-                    
-
             }
 
+            getInputActual(dispatch,user.currentUser.others._id)
+            getTwoFirstInputActual(dispatch,user.currentUser.others._id)
+            
+            
 
-            if(!isFetching&&!error){
+            if(!isFetching){
                 setInputBigButtom(false) 
+                getInputActual(dispatch,user.currentUser.others._id)
+                getTwoFirstInputActual(dispatch,user.currentUser.others._id)
             }
             
        
@@ -132,25 +113,23 @@ export default function ActualSpending({inputTotal,outputTotal}){
 const handleClickOutput=(e)=>{
     e.preventDefault()
     if(!user.currentUser){
-        navigate("/expense-control/login")
+        navigate("/login")
     }else{
-        try{
+        
             const outpu = {...addOutput,userId:user.currentUser.others._id}
             addOutputActual(dispatch,outpu)
-            getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
-            getOutputActual(dispatch,user.currentUser.others._id)
-            setOutputBigButtom(false)
-    
-        }catch{}
+        
+    }
+    getOutputActual(dispatch,user.currentUser.others._id)
+    getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
+
+    if(!isFetching1){
+        setOutputBigButtom(false)
         getOutputActual(dispatch,user.currentUser.others._id)
         getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
-        
-
     }
 
-    if(!isFetching1&&!error1){
-        setOutputBigButtom(false)
-    }
+    
     
     
 }
@@ -221,18 +200,7 @@ const handleClickOutput=(e)=>{
                             </div>
         
                         </div>
-                        {/*<div>
-                            <p className="text-black section-title-center">or</p>
-                        </div>
-                        <div className="modal-body">   
-                            <div className="spending-plan-item blue">
-                                <p  >select input <i className='bx bx-chevron-down'></i></p>
-                            </div>
-                            
-                            <div >
-                                <input className="spending-plan-item white" type="number" />
-                            </div>
-                        </div>*/}
+                    
                             <div className="modal-button-container">
                                 <button className={`actual-spending-button blue text-white ${isFetching?"loader":""}`}>{translate?"input":"ingreso"} <i className='bx bx-plus'></i></button>
                             </div>
@@ -268,18 +236,7 @@ const handleClickOutput=(e)=>{
                             </div>
         
                         </div>
-                        {/*<div>
-                            <p className="text-black section-title-center">or</p>
-                        </div>
-                        <div className="modal-body">   
-                            <div className="spending-plan-item red">
-                                <p  >select output <i className='bx bx-chevron-down'></i></p>
-                            </div>
-                            
-                            <div >
-                                <input className="spending-plan-item white" type="number" />
-                            </div>
-                        </div>*/}
+          
                             <div className="modal-button-container">
                                 <button className={`actual-spending-button red text-white  ${isFetching1?"loader":""}`}>{translate?'output':'gasto'} <i className='bx bx-minus'></i></button>
                             </div>

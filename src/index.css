@@ -113,6 +113,16 @@ p{
     width: 50px;
   }
 
+  .loader1::after {
+    content: "";
+    background: url("../src/my-loader1.svg") no-repeat;
+    display: inline-block;
+    background-size: 25px;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+  }
+
 /*-----------------tutorial-------------------*/  
 
 .container-header-tutorial{

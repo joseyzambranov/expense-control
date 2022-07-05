@@ -58,7 +58,7 @@ export default function DateTitle(){
     const dispatch = useDispatch()
 
     const input = useSelector((state)=>state.inputActual.inputs)
-    const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
+    const output = useSelector((state)=>state.outputActual.outputs)
 
 
     const month = [
@@ -94,7 +94,13 @@ export default function DateTitle(){
 
     const date = input.map((i)=>new Date(i.createdAt))
 
-    const filter = date.map((i)=>re.exec(i.toISOString()))
+    const dateOutput = output.map((i)=>new Date(i.createdAt))
+
+    const filterDataTotal = [...date , ...dateOutput]
+
+    var uniqueDate = [...new Set(filterDataTotal)]
+
+    const filter = uniqueDate.map((i)=>re.exec(i.toISOString()))
 
    const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)]:mes[Number(i.groups.month)]} ${i.groups.year}`)
 
@@ -108,7 +114,6 @@ export default function DateTitle(){
 
     const dateActual = `${month[Number(actualmont.groups.month)]} ${new Date().getFullYear()}`
 
-
     return(
         <section   className="section-title-center section">
 
@@ -121,6 +126,7 @@ export default function DateTitle(){
 
             <Option  value={i} >{i}</Option>
             ))}
+     
 
             </Select>
 

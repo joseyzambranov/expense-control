@@ -92,8 +92,7 @@ export default function Login(){
 
     
     if(!isFetching&&!error&&loginTrue){
-        //window.location.reload()
-        window.location.href="/expense-control"
+        window.location.href="/"
     }
  
     

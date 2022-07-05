@@ -13,6 +13,10 @@ import {HashRouter } from 'react-router-dom';
 
 
 export default function ActualSpending({inputTotal,outputTotal}){
+
+
+    const {isFetching,error} = useSelector((state)=>state.inputActual)
+    const {isFetching1,error1} = useSelector((state)=>state.outputActual)
     const translate = useSelector((state)=>state.user.translate) 
 
     const navigate=useNavigate()
@@ -90,7 +94,7 @@ export default function ActualSpending({inputTotal,outputTotal}){
             e.preventDefault()
             if(!user.currentUser){
 
-                navigate("/expense-control/login")
+                navigate("/login")
 
             }else{
 
@@ -104,8 +108,13 @@ export default function ActualSpending({inputTotal,outputTotal}){
               }catch{}
                     getInputActual(dispatch,user.currentUser.others._id)
                     getTwoFirstInputActual(dispatch,user.currentUser.others._id)
-                    setInputBigButtom(false) 
+                    
 
+            }
+
+
+            if(!isFetching&&!error){
+                setInputBigButtom(false) 
             }
             
        
@@ -135,9 +144,14 @@ const handleClickOutput=(e)=>{
         }catch{}
         getOutputActual(dispatch,user.currentUser.others._id)
         getTwoFirstOutputActuaL(dispatch,user.currentUser.others._id)
-        setOutputBigButtom(false)
+        
 
     }
+
+    if(!isFetching1&&!error1){
+        setOutputBigButtom(false)
+    }
+    
     
 }
     
@@ -157,11 +171,6 @@ const handleClickOutput=(e)=>{
         <div>
 
             </div>
-
-           
-
-
-
 
             <Link to="Table">
             <div className="spending-plan-item-list">
@@ -225,7 +234,7 @@ const handleClickOutput=(e)=>{
                             </div>
                         </div>*/}
                             <div className="modal-button-container">
-                                <button className="actual-spending-button blue text-white ">{translate?"input":"ingreso"} <i className='bx bx-plus'></i></button>
+                                <button className={`actual-spending-button blue text-white ${isFetching?"loader":""}`}>{translate?"input":"ingreso"} <i className='bx bx-plus'></i></button>
                             </div>
         
                     </form>
@@ -272,7 +281,7 @@ const handleClickOutput=(e)=>{
                             </div>
                         </div>*/}
                             <div className="modal-button-container">
-                                <button className="actual-spending-button red text-white ">{translate?'output':'gasto'} <i className='bx bx-minus'></i></button>
+                                <button className={`actual-spending-button red text-white  ${isFetching1?"loader":""}`}>{translate?'output':'gasto'} <i className='bx bx-minus'></i></button>
                             </div>
         
                     </form>

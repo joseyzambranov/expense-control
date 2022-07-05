@@ -6,79 +6,79 @@ export const outputActualSlice = createSlice({
     outputs:[],
     twoFirstOutputs:[],
     total:0,
-    isFetching:false,
-    error:false
+    isFetching1:false,
+    error1:false
     },
     reducers:{
         //GET OUTPUT ALL
         getOutputActualStart:(state)=>{
-            state.isFetching=true;
-            state.error=true;
+            state.isFetching1=true;
+            state.error1=true;
         },
         getOutputActualSuccess:(state,action)=>{
-            state.isFetching=false;
+            state.isFetching1=false;
             state.outputs=action.payload;
             state.total=action.payload.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
         },
         getOutputActualFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true
+            state.isFetching1=false;
+            state.error1=true
         },
           //GET OUTPUT TWO FIRST
         getTwoFirstOutputActualStart:(state)=>{
-            state.isFetching=true;
-            state.error=true;
+            state.isFetching1=true;
+            state.error1=true;
         },
         getTwoFirstOutputActualSuccess:(state,action)=>{
-            state.isFetching=false;
+            state.isFetching1=false;
             state.twoFirstOutputs=action.payload;
         },
         getTwoFirstOutputActualFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true
+            state.isFetching1=false;
+            state.error1=true
         },
         //ADD OUTPUT
         addOutputActualStart:(state)=>{
-            state.isFetching=true;
-            state.error=true;
+            state.isFetching1=true;
+            state.error1=true;
         },
         addOutputActualSuccess:(state,action)=>{
-            state.isFetching=false;
+            state.isFetching1=false;
             state.outputs.push(action.payload);
             state.total = action.payload.map(item=>item.price).reduce((prev,curr)=>prev+curr,0)
 
         },
         addOutputActualFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true
+            state.isFetching1=false;
+            state.error1=true
 
         },//UPDATE OUTPUT
         updateOutputActualStart:(state)=>{
-            state.isFetching=true;
-            state.error=true;
+            state.isFetching1=true;
+            state.error1=true;
         },
         updateOutputActualSuccess:(state,action)=>{
-            state.isFetching=false;
+            state.isFetching1=false;
             state.outputs[state.outputs.findIndex((item)=>item._id===action.payload.id)]=action.payload.output;
         },
         updateOutputActualFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true;
+            state.isFetching1=false;
+            state.error1=true;
         },
          //DELETE OUTPUT
          deleteOutputActualStart:(state)=>{
-            state.isFetching=false;
-            state.error=true;
+            state.isFetching1=false;
+            state.error1=true;
         },
         deleteOutputActualSuccess:(state,action)=>{
-            state.isFetching=false;
+            state.isFetching1=false;
             state.outputs.splice(
                 state.outputs.findIndex((item)=>item._id===action.payload),1
             )
         },
         deleteOutputActualFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true;
+            state.isFetching1=false;
+            state.error1=true;
         },
            //LOGOUT
            outputLogout:(state)=>{

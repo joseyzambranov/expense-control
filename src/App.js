@@ -18,8 +18,8 @@ function App() {
 
 
     useEffect(()=>{
-        ReactGA.initialize("G-Z5R72V3KR9");
-        ReactGA.pageview("https://joseyzambranov.github.io/expense-control/");
+        ReactGA.initialize('G-W35V3WDHY9', { standardImplementation: true });
+        ReactGA.pageview(window.location.pathname + window.location.search);
     },[])
 
 return(

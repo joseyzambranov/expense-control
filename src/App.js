@@ -10,11 +10,16 @@ import { HashRouter,Route, Routes } from "react-router-dom";
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 
+
+
+
 function App() {
+
+
 
     useEffect(()=>{
         ReactGA.initialize("G-Z5R72V3KR9");
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.pageview("https://joseyzambranov.github.io/expense-control/");
     },[])
 
 return(

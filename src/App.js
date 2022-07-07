@@ -13,8 +13,8 @@ import { useEffect } from 'react';
 function App() {
 
     useEffect(() => {
-        ReactGA.initialize("G-66RSXG1YCR");
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.initialize("G-Z5R72V3KR9");
+        ReactGA.pageview(location.pathname);
       }, []);
 
 return(

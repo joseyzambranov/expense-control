@@ -7,20 +7,8 @@ import InputEdit from './page/InputEdit';
 import OutputEdit from './page/OutputEdit';
 import ForgotPassword from "./page/ForgotPassword"
 import { HashRouter,Route, Routes } from "react-router-dom";
-import ReactGA from 'react-ga';
-import { useEffect } from 'react';
-
-
-
 
 function App() {
-
-
-
-    useEffect(()=>{
-        ReactGA.initialize('G-W35V3WDHY9', { standardImplementation: true });
-        ReactGA.pageview(window.location.pathname + window.location.search);
-    },[])
 
 return(
     <>

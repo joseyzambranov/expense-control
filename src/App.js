@@ -9,13 +9,18 @@ import ForgotPassword from "./page/ForgotPassword"
 import { HashRouter,Route, Routes } from "react-router-dom";
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
+import { createBrowserHistory } from 'history'
+ReactGA.initialize("G-Z5R72V3KR9");
+const browserHistory = createBrowserHistory()
+browserHistory.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search)
+  })
 
 function App() {
 
     useEffect(() => {
-        ReactGA.initialize("G-Z5R72V3KR9");
-        ReactGA.pageview(window.location.pathname + window.location.search);
-        console.log(window.location.pathname + window.location.search);
+        
+        ReactGA.pageview(window.location.pathname + window.location.search)
       }, []);
 
 return(

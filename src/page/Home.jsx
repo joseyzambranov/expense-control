@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import ButtonAndTotal from "../components/buttonAndTotal/ButtonAndTotal"
 import DateTitle from "../components/date/DateTilte"
@@ -8,22 +8,12 @@ import Plan from "../components/plan/Plan"
 import Title from "../components/title/Title"
 import Translate from "../components/translate/Translate"
 import Tutorial from "../components/tutorial/Tutorial"
-import ReactGA from 'react-ga';
-import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
+import { getInputActual, getOutputActual } from "../redux/apiCall"
 
 export default function Home(){
 
-    useEffect(() => {
-        ReactGA.initialize("G-Z5R72V3KR9");
-        ReactGA.pageview(window.location.pathname + window.location.search);
-        console.log(window.location.pathname + window.location.search);
-      }, []);
-
     const user =useSelector((state)=>state.user)
     const dispatch = useDispatch()
-   
-    //const outputTotal = useSelector((state)=>state.outputActual.total)
-    //const inputTotal = useSelector((state)=>state.inputActual.total)
 
     const inputFilter = useSelector((state)=>state.inputActual.inputFilter)
 

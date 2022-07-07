@@ -10,15 +10,11 @@ import Translate from "../components/translate/Translate"
 import Tutorial from "../components/tutorial/Tutorial"
 import ReactGA from 'react-ga';
 import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
-const TRACKING_ID = "G-LXWKJ058HE"; // OUR_TRACKING_ID
-
-
-ReactGA.initialize(TRACKING_ID);
-
 
 export default function Home(){
 
     useEffect(() => {
+        ReactGA.initialize("G-66RSXG1YCR");
         ReactGA.pageview(window.location.pathname + window.location.search);
       }, []);
 

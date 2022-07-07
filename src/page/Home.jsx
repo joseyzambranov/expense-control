@@ -9,12 +9,12 @@ import Title from "../components/title/Title"
 import Translate from "../components/translate/Translate"
 import Tutorial from "../components/tutorial/Tutorial"
 import ReactGA from 'react-ga';
+import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
 const TRACKING_ID = "G-LXWKJ058HE"; // OUR_TRACKING_ID
 
 
 ReactGA.initialize(TRACKING_ID);
 
-import { getInputActual, getOutputActual, getTwoFirstInputActual, getTwoFirstOutputActuaL } from "../redux/apiCall"
 
 export default function Home(){
 

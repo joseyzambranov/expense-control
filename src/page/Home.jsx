@@ -10,7 +10,7 @@ import Translate from "../components/translate/Translate"
 import Tutorial from "../components/tutorial/Tutorial"
 import ReactGA from 'react-ga';
 const TRACKING_ID = "G-LXWKJ058HE"; // OUR_TRACKING_ID
-import { useEffect } from 'react';
+
 
 ReactGA.initialize(TRACKING_ID);
 

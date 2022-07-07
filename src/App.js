@@ -9,19 +9,13 @@ import ForgotPassword from "./page/ForgotPassword"
 import { HashRouter,Route, Routes } from "react-router-dom";
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
-import { createBrowserHistory } from 'history'
-ReactGA.initialize("G-Z5R72V3KR9");
-const browserHistory = createBrowserHistory()
-browserHistory.listen((location, action) => {
-    ReactGA.pageview(location.pathname + location.search)
-  })
 
 function App() {
 
-    useEffect(() => {
-        
-        ReactGA.pageview(window.location.pathname + window.location.search)
-      }, []);
+    useEffect(()=>{
+        ReactGA.initialize("G-Z5R72V3KR9");
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    },[])
 
 return(
     <>
@@ -29,6 +23,7 @@ return(
 <HashRouter basename='/'>
 
         <Routes>
+
             <Route exact path='/'element={<Home />}></Route>
             <Route exact path='/Login'element={<Login />}></Route>
             <Route exact path='/Register'element={<Register />}></Route>
@@ -36,6 +31,7 @@ return(
             <Route exact path="/InputEdit/:inputId" element={<InputEdit />}></Route>
             <Route exact path="/OutputEdit/:outputId" element={<OutputEdit />}></Route>
             <Route exact path="/ForgotPassword" element={<ForgotPassword />}></Route>
+
         </Routes>    
 
 </HashRouter>

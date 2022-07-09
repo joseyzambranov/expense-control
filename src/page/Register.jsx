@@ -149,7 +149,7 @@ export default function Login(){
 
                     <NotUser>
                         
-                        <Link to="ForgotPassword">
+                        <Link to="/ForgotPassword">
                              <span>{translate?"Recovery Password":"Recuperar Contraseña"}</span>
                         </Link>
 

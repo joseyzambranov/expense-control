@@ -136,7 +136,7 @@ export default function Login(){
                         </MsjError>
                         <NotUser>
                         
-                            <Link to="Register">
+                            <Link to="/Register">
                                  <span>{translate?"Not a User":"No soy usuario"}</span>
                             </Link>
 
@@ -144,7 +144,7 @@ export default function Login(){
 
                         </NotUser>
                         <NotUser>
-                        <Link to="ForgotPassword">
+                        <Link to="/ForgotPassword">
                              <span>{translate?"Recovery Password":"Recuperar contraseña"}</span>
                         </Link>
                         </NotUser>

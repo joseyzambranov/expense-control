@@ -51,6 +51,10 @@ export default function Home(){
 
     const outputTotal = outputAfilter.map(i=>i.price).reduce((p,c)=>p+c,0)
 
+    /*console.log(inputA + "<--inputA")
+    console.log(inputAfilter + "<--inputAfilter")
+    console.log(dateFilter1 +"<--dateFIlter1")
+    console.log(dateFilter2 + "<--dateFilter2")*/
 
     return(
         <>

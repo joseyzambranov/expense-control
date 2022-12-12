@@ -74,7 +74,7 @@ export default function DateTitle(){
         "SEPTEMBER",
         "OCTOBER",
         "NOVEMBER",
-        "DECEMBER",
+        "DECEMBER"
     ] 
     const mes = [
         
@@ -89,7 +89,7 @@ export default function DateTitle(){
         "SEPTIEMBRE",
         "OCTUBRE",
         "NOVIEMBRE",
-        "DICIEMBRE",
+        "DICIEMBRE"
     ] 
 
     const re = /(?<year>\d{4})-(?<month>\d{2})/ 
@@ -103,22 +103,22 @@ export default function DateTitle(){
     var uniqueDate = [...new Set(filterDataTotal)]
 
     const filter = uniqueDate.map((i)=>re.exec(i.toISOString()))
-    console.log(re)
-   const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)]:mes[Number(i.groups.month)]} ${i.groups.year}`)
-   
+  
+   const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)-1]:mes[Number(i.groups.month)]} ${i.groups.year}`)
    const resultFilter = dateFilter.filter((item,index)=>{
 
-    
+    console.log(dateFilter)
     return dateFilter.indexOf(item)===index
    
     })
 
     const actualmont = re.exec(new Date().toISOString())
 
-    const dateActual = `${month[Number(actualmont.groups.month)]} ${new Date().getFullYear()}`
+    const dateActual = `${month[Number(actualmont.groups.month)-1]} ${new Date().getFullYear()}`
 
-   
-
+   console.log(actualmont.groups.month)
+    console.log(dateActual)
+    
     return(
         <section   className="section-title-center section">
 
@@ -128,8 +128,9 @@ export default function DateTitle(){
             <Option value={dateActual} >{translate?"FILTER DATE":"FILTRAR FECHA"}</Option>
 
             {resultFilter.map((i)=>(
-
+                
             <Option  value={i} >{i}</Option>
+            
             ))}
      
 

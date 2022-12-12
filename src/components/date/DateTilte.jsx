@@ -62,7 +62,7 @@ export default function DateTitle(){
 
 
     const month = [
-        "DECEMBER",
+        
         "JANUARY",
         "FEBRUARY",
         "MARCH",
@@ -73,10 +73,11 @@ export default function DateTitle(){
         "AUGUST",
         "SEPTEMBER",
         "OCTOBER",
-        "NOVEMBER"
+        "NOVEMBER",
+        "DECEMBER",
     ] 
     const mes = [
-        "DICIEMBRE",
+        
         "ENERO",
         "FEBRERO",
         "MARZO",
@@ -87,7 +88,8 @@ export default function DateTitle(){
         "AGOSTO",
         "SEPTIEMBRE",
         "OCTUBRE",
-        "NOVIEMBRE"
+        "NOVIEMBRE",
+        "DICIEMBRE",
     ] 
 
     const re = /(?<year>\d{4})-(?<month>\d{2})/ 
@@ -101,11 +103,12 @@ export default function DateTitle(){
     var uniqueDate = [...new Set(filterDataTotal)]
 
     const filter = uniqueDate.map((i)=>re.exec(i.toISOString()))
-
+    console.log(re)
    const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)]:mes[Number(i.groups.month)]} ${i.groups.year}`)
-
+   
    const resultFilter = dateFilter.filter((item,index)=>{
 
+    
     return dateFilter.indexOf(item)===index
    
     })
@@ -113,6 +116,8 @@ export default function DateTitle(){
     const actualmont = re.exec(new Date().toISOString())
 
     const dateActual = `${month[Number(actualmont.groups.month)]} ${new Date().getFullYear()}`
+
+   
 
     return(
         <section   className="section-title-center section">

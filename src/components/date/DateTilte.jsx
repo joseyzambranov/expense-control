@@ -105,9 +105,9 @@ export default function DateTitle(){
     const filter = uniqueDate.map((i)=>re.exec(i.toISOString()))
   
    const dateFilter = filter.map((i)=>`${translate?month[Number(i.groups.month)-1]:mes[Number(i.groups.month)]} ${i.groups.year}`)
+    
    const resultFilter = dateFilter.filter((item,index)=>{
-
-    console.log(dateFilter)
+   
     return dateFilter.indexOf(item)===index
    
     })
@@ -116,9 +116,6 @@ export default function DateTitle(){
 
     const dateActual = `${month[Number(actualmont.groups.month)-1]} ${new Date().getFullYear()}`
 
-   console.log(actualmont.groups.month)
-    console.log(dateActual)
-    
     return(
         <section   className="section-title-center section">
 

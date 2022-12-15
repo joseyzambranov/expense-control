@@ -144,7 +144,7 @@ export default function Login(){
                     </ContainerButton>
 
                     <MsjError>
-                            {error?<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>:geristerTrue&&<Link to="/login"><RegisterTrue>{translate?"Registration Successfully":"Registro Exitoso"}</RegisterTrue></Link>}
+                            {error?<Error>{translate?"Somenthing went wrong...":"Algo salió mal..."}</Error>:geristerTrue&&<Link to="/Login"><RegisterTrue>{translate?"Registration Successfully":"Registro Exitoso"}</RegisterTrue></Link>}
                     </MsjError>
 
                     <NotUser>
